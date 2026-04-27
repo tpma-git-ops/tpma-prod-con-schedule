@@ -1,0 +1,11 @@
+---
+description: Where to store agent plans and how to move them when done
+alwaysApply: true
+---
+
+# Planning files
+
+- When you **produce a plan** (steps, design, or task breakdown for meaningful work), save it as Markdown in **`plans/backlog/`**.
+- **Name files** `YYYY-MM-DD-short-title.md` (kebab-case). Add `-2`, `-3` if needed the same day.
+- **When the plan is complete** (shipped, cancelled with note, or superseded), **move** the file from `plans/backlog/` to **`plans/complete/`**. Prefer moving over deleting.
+- For full wording shared with other agents, see the repo root **`AGENTS.md`**.

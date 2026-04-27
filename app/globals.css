@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  FONT SETUP
+  
+  Poppins: loaded from Google Fonts in layout.tsx
+  
+  Cirka: You need to add the font files to /public/fonts/
+  Download from your TPMA brand assets and add:
+    - Cirka-Bold.woff2
+    - Cirka-Regular.woff2
+  
+  If you don't have .woff2 files, use a converter like 
+  https://cloudconvert.com/otf-to-woff2
+*/
+
+@font-face {
+  font-family: 'Cirka';
+  src: url('/fonts/Cirka-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cirka';
+  src: url('/fonts/Cirka-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  body {
+    @apply font-poppins text-tpma-black antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-cirka;
+  }
+}
+
+@layer components {
+  .session-card {
+    @apply rounded-lg border transition-all duration-200;
+  }
+
+  .session-card-interactive {
+    @apply cursor-pointer hover:shadow-md active:scale-[0.99];
+  }
+
+  .room-pill {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium text-white;
+  }
+
+  .status-badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium;
+  }
+
+  .status-draft {
+    @apply bg-amber-100 text-amber-800;
+  }
+
+  .status-published {
+    @apply bg-emerald-100 text-emerald-800;
+  }
+
+  .time-label {
+    @apply font-poppins text-sm font-semibold text-tpma-dark/60 tabular-nums;
+  }
+}
+
+/* Smooth expand/collapse animation */
+.expand-enter {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.expand-enter-active {
+  max-height: 500px;
+  opacity: 1;
+  transition: max-height 300ms ease-out, opacity 200ms ease-out;
+}
+
+/* Subtle pulse for live indicator */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.live-pulse {
+  animation: live-pulse 2s ease-in-out infinite;
+}
