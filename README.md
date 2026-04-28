@@ -92,6 +92,8 @@ Typical hosting is **Vercel** (or any Node host that supports Next.js):
 
 ## Contributing
 
+**Branching:** integrate all work on **`develop`** (branch from it, open PRs into it). **`main`** is for releases only—merge **`develop` → `main`** via PR when cutting a release; do not use `main` for day-to-day development. Details are in **`CONTRIBUTING.md`**.
+
 Development norms, security reporting, and community expectations live in **`CONTRIBUTING.md`**, **`SECURITY.md`**, and **`CODE_OF_CONDUCT.md`**. Automated contributors should follow **`AGENTS.md`** and the `plans/` workflow. If you are stuck on Supabase or env setup, open an issue with what you tried.
 
 ## Troubleshooting
