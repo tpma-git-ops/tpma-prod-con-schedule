@@ -47,6 +47,7 @@ export function RoomFilter({ activeRoom, onRoomChange }: RoomFilterProps) {
             isActive={isActive}
             className={`
               ${ROOM_PILL_CLASSES[room]}
+              ${roomStyle ? `border-l-[3px] pl-2.5 ${roomStyle.cardBar}` : ''}
               ${isActive ? 'font-semibold ring-1 ring-inset ring-tpma-dark/10 shadow-sm' : ''}
             `}
             leadingVisual={room === 'All' ? null : (
