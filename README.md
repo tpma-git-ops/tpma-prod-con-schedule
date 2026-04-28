@@ -80,16 +80,6 @@ supabase/               schema.sql, seed.sql (+ other SQL helpers in repo)
 2. Go to `/login`, request a magic link, complete sign-in → `/admin`.
 3. Publish or edit sessions: connected public clients see changes via Realtime without reloading.
 
-## Production deployment
-
-Typical hosting is **Vercel** (or any Node host that supports Next.js):
-
-- Configure the same Supabase environment variables as in `.env.local.example`.
-- Register the production origin in Supabase Auth (Site URL + redirect for `/api/auth/callback`).
-- Point the conference schedule hostname (e.g. `schedule.torontoproductcon.com`) at the deployment when DNS is ready.
-
-`npm i -g vercel` is optional but useful for env sync and previews.
-
 ## Contributing
 
 **Branching:** integrate all work on **`develop`** (branch from it, open PRs into it). **`main`** is for releases only—merge **`develop` → `main`** via PR when cutting a release; do not use `main` for day-to-day development. Details are in **`CONTRIBUTING.md`**.
