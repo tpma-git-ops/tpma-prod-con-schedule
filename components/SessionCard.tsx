@@ -117,7 +117,6 @@ export function SessionCard({
       <h3 className={`
         font-cirka font-bold leading-tight
         ${isKeynote ? 'text-lg text-tpma-dark' : 'text-base text-tpma-dark'}
-        ${compact ? 'text-sm' : ''}
       `}>
         {session.title}
       </h3>

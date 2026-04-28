@@ -156,15 +156,15 @@ insert into public.sessions (id, title, description, room, start_time, end_time,
 
   ('b0000001-0000-0000-0000-000000000027', 'Unconference Session',
    'Topic selected by attendee vote.',
-   'Room 2', '13:55', '14:25', 'unconference', 'draft', false, 301),
+   'Room 2', '13:55', '14:25', 'unconference', 'published', false, 301),
 
   ('b0000001-0000-0000-0000-000000000028', 'Unconference Session',
    'Topic selected by attendee vote.',
-   'Room 3', '13:55', '14:25', 'unconference', 'draft', false, 302),
+   'Room 3', '13:55', '14:25', 'unconference', 'published', false, 302),
 
   ('b0000001-0000-0000-0000-000000000029', 'Unconference Session',
    'Topic selected by attendee vote.',
-   'Room 4', '13:55', '14:25', 'unconference', 'draft', false, 303),
+   'Room 4', '13:55', '14:25', 'unconference', 'published', false, 303),
 
   ('b0000001-0000-0000-0000-000000000030', 'Unconference Table Rounds',
    'Open-format table discussions.',
@@ -179,15 +179,15 @@ insert into public.sessions (id, title, description, room, start_time, end_time,
 
   ('b0000001-0000-0000-0000-000000000032', 'Unconference Session',
    'Topic selected by attendee vote.',
-   'Room 2', '14:35', '15:05', 'unconference', 'draft', false, 351),
+   'Room 2', '14:35', '15:05', 'unconference', 'published', false, 351),
 
   ('b0000001-0000-0000-0000-000000000033', 'Unconference Session',
    'Topic selected by attendee vote.',
-   'Room 3', '14:35', '15:05', 'unconference', 'draft', false, 352),
+   'Room 3', '14:35', '15:05', 'unconference', 'published', false, 352),
 
   ('b0000001-0000-0000-0000-000000000034', 'Unconference Session',
    'Topic selected by attendee vote.',
-   'Room 4', '14:35', '15:05', 'unconference', 'draft', false, 353),
+   'Room 4', '14:35', '15:05', 'unconference', 'published', false, 353),
 
   ('b0000001-0000-0000-0000-000000000035', 'Unconference Table Rounds',
    'Open-format table discussions.',
@@ -202,15 +202,15 @@ insert into public.sessions (id, title, description, room, start_time, end_time,
 
   ('b0000001-0000-0000-0000-000000000037', 'Unconference Session',
    'Topic selected by attendee vote.',
-   'Room 2', '15:35', '16:05', 'unconference', 'draft', false, 451),
+   'Room 2', '15:35', '16:05', 'unconference', 'published', false, 451),
 
   ('b0000001-0000-0000-0000-000000000038', 'Unconference Session',
    'Topic selected by attendee vote.',
-   'Room 3', '15:35', '16:05', 'unconference', 'draft', false, 452),
+   'Room 3', '15:35', '16:05', 'unconference', 'published', false, 452),
 
   ('b0000001-0000-0000-0000-000000000039', 'Unconference Session',
    'Topic selected by attendee vote.',
-   'Room 4', '15:35', '16:05', 'unconference', 'draft', false, 453),
+   'Room 4', '15:35', '16:05', 'unconference', 'published', false, 453),
 
   ('b0000001-0000-0000-0000-000000000040', 'Unconference Table Rounds',
    'Open-format table discussions.',
