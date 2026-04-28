@@ -39,13 +39,15 @@ npm run dev
 
 ### 4. Add Cirka Font
 
-The TPMA brand uses Cirka for headings. Add font files to `public/fonts/`:
-- `Cirka-Bold.woff2`
-- `Cirka-Regular.woff2`
+The TPMA brand uses Cirka for headings. Copy the files into `public/fonts/` with these names:
 
-If you only have .otf or .ttf files, convert at https://cloudconvert.com/otf-to-woff2
+- `Cirka-Light.ttf`
+- `Cirka-Regular.ttf`
+- `Cirka-Bold.ttf`
 
-The app will fall back to Georgia if Cirka isn't loaded.
+`globals.css` loads them via `@font-face`. For production you can swap to `.woff2` copies (smaller) and change the `url()`/`format()` lines accordingly.
+
+The app falls back to Georgia if Cirka files are missing.
 
 ### 5. Deploy to Vercel
 

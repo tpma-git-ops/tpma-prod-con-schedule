@@ -7,27 +7,30 @@
   
   Poppins: loaded from Google Fonts in layout.tsx
   
-  Cirka: You need to add the font files to /public/fonts/
-  Download from your TPMA brand assets and add:
-    - Cirka-Bold.woff2
-    - Cirka-Regular.woff2
-  
-  If you don't have .woff2 files, use a converter like 
-  https://cloudconvert.com/otf-to-woff2
+  Cirka: heading font; files live in public/fonts/
+  Supported: Cirka-Light / Regular / Bold as .ttf (or convert to .woff2 for smaller downloads).
 */
 
 @font-face {
   font-family: 'Cirka';
-  src: url('/fonts/Cirka-Bold.woff2') format('woff2');
-  font-weight: 700;
+  src: url('/fonts/Cirka-Light.ttf') format('truetype');
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Cirka';
-  src: url('/fonts/Cirka-Regular.woff2') format('woff2');
+  src: url('/fonts/Cirka-Regular.ttf') format('truetype');
   font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cirka';
+  src: url('/fonts/Cirka-Bold.ttf') format('truetype');
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }

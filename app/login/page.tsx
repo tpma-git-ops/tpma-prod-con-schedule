@@ -1,14 +1,21 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase-browser'
 
-export default function LoginPage() {
+function LoginForm() {
   const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const supabase = createClient()
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    const err = searchParams.get('error')
+    if (err) setError(decodeURIComponent(err))
+  }, [searchParams])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -84,5 +91,19 @@ export default function LoginPage() {
         )}
       </div>
     </main>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen flex items-center justify-center px-4">
+          <p className="text-sm text-tpma-dark/50">Loading…</p>
+        </main>
+      }
+    >
+      <LoginForm />
+    </Suspense>
   )
 }

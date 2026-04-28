@@ -1,15 +1,23 @@
 'use client'
 
 import { TimeBlock, Room } from '@/lib/types'
-import { formatTime, formatTimeRange, getDurationMinutes } from '@/lib/utils'
+import { isSessionSaveable } from '@/lib/savedSessions'
+import { formatTime, getDurationMinutes } from '@/lib/utils'
 import { SessionCard } from './SessionCard'
 
 interface ScheduleTimelineProps {
   timeBlocks: TimeBlock[]
   activeRoom: Room | 'All'
+  savedSessionIdSet: Set<string>
+  onToggleSavedSession: (sessionId: string) => void
 }
 
-export function ScheduleTimeline({ timeBlocks, activeRoom }: ScheduleTimelineProps) {
+export function ScheduleTimeline({
+  timeBlocks,
+  activeRoom,
+  savedSessionIdSet,
+  onToggleSavedSession,
+}: ScheduleTimelineProps) {
   if (timeBlocks.length === 0) {
     return (
       <div className="text-center py-20 text-tpma-dark/40">
@@ -26,13 +34,25 @@ export function ScheduleTimeline({ timeBlocks, activeRoom }: ScheduleTimelinePro
           key={`${block.start_time}-${block.end_time}-${index}`}
           block={block}
           activeRoom={activeRoom}
+          savedSessionIdSet={savedSessionIdSet}
+          onToggleSavedSession={onToggleSavedSession}
         />
       ))}
     </div>
   )
 }
 
-function TimeBlockRow({ block, activeRoom }: { block: TimeBlock; activeRoom: Room | 'All' }) {
+function TimeBlockRow({
+  block,
+  activeRoom,
+  savedSessionIdSet,
+  onToggleSavedSession,
+}: {
+  block: TimeBlock
+  activeRoom: Room | 'All'
+  savedSessionIdSet: Set<string>
+  onToggleSavedSession: (sessionId: string) => void
+}) {
   const isBreakType = block.sessions.every(
     s => ['break', 'lunch', 'registration', 'afterparty', 'announcement'].includes(s.session_type)
   )
@@ -112,7 +132,14 @@ function TimeBlockRow({ block, activeRoom }: { block: TimeBlock; activeRoom: Roo
           }
         `}>
           {roomSessions.map((session) => (
-            <SessionCard key={session.id} session={session} compact={activeRoom === 'All' && roomSessions.length > 1} />
+            <SessionCard
+              key={session.id}
+              session={session}
+              compact={activeRoom === 'All' && roomSessions.length > 1}
+              canSave={isSessionSaveable(session)}
+              isSaved={savedSessionIdSet.has(session.id)}
+              onToggleSavedSession={onToggleSavedSession}
+            />
           ))}
         </div>
       </div>

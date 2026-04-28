@@ -1,2 +1,20 @@
 node_modules
 .env.local
+
+# Next.js build output
+.next/
+out/
+
+# Vercel
+.vercel
+
+# TypeScript build info
+*.tsbuildinfo
+
+# macOS
+.DS_Store
+
+# Brand fonts: keep local per licence; copy into public/fonts/ per README
+public/fonts/*.ttf
+public/fonts/*.otf
+public/fonts/*.woff2

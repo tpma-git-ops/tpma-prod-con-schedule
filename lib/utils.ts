@@ -27,7 +27,7 @@ export function groupSessionsIntoTimeBlocks(sessions: Session[]): TimeBlock[] {
 
   const blocks: TimeBlock[] = []
 
-  for (const [key, blockSessions] of blockMap) {
+  for (const [key, blockSessions] of Array.from(blockMap.entries())) {
     const [start_time, end_time] = key.split('-')
     const isFullWidth = blockSessions.every(s => s.is_full_width)
     blocks.push({

@@ -13,29 +13,30 @@ insert into public.admin_emails (email) values
 -- ============================================
 -- SPEAKERS
 -- ============================================
-insert into public.speakers (id, name, title, company, linkedin_url) values
-  ('a0000001-0000-0000-0000-000000000001', 'Radhika Dutt', null, null, null),
-  ('a0000001-0000-0000-0000-000000000002', 'Ben Erez', null, 'Supra Podcast', null),
-  ('a0000001-0000-0000-0000-000000000003', 'Marc Baselga', null, 'Supra Podcast', null),
-  ('a0000001-0000-0000-0000-000000000004', 'Mike Ho', null, null, null),
-  ('a0000001-0000-0000-0000-000000000005', 'May Wong', null, null, null),
-  ('a0000001-0000-0000-0000-000000000006', 'Kristine Dizon', null, null, null),
-  ('a0000001-0000-0000-0000-000000000007', 'Ana Lobo', null, null, null),
-  ('a0000001-0000-0000-0000-000000000008', 'Abinandhini Chandranat', null, null, null),
-  ('a0000001-0000-0000-0000-000000000009', 'Colin Matthews', null, null, null),
-  ('a0000001-0000-0000-0000-000000000010', 'Joan Milway', null, null, null),
-  ('a0000001-0000-0000-0000-000000000011', 'Daniel de Repentigny', null, null, null),
-  ('a0000001-0000-0000-0000-000000000012', 'Angeli Mehta', null, null, null),
-  ('a0000001-0000-0000-0000-000000000013', 'Emily Reid', null, null, null),
-  ('a0000001-0000-0000-0000-000000000014', 'Scott Miller', null, null, null),
-  ('a0000001-0000-0000-0000-000000000015', 'Andrea Michalek', null, null, null),
-  ('a0000001-0000-0000-0000-000000000016', 'Ross Saunders', null, null, null),
-  ('a0000001-0000-0000-0000-000000000017', 'Rowan Noronha', null, null, null),
-  ('a0000001-0000-0000-0000-000000000018', 'April Dunford', null, null, null),
-  ('a0000001-0000-0000-0000-000000000019', 'Ben Yoskovitz', null, null, null),
-  ('a0000001-0000-0000-0000-000000000020', 'Iris Guo', null, null, null),
-  ('a0000001-0000-0000-0000-000000000021', 'John Cutler', null, null, null),
-  ('a0000001-0000-0000-0000-000000000022', 'Jenya Faris', null, null, null);
+-- Speaker names, photos, and profile URLs synced from tpma.ca/speakers-authors (see scripts/fetch-tpma-speaker-meta.mjs)
+insert into public.speakers (id, name, title, company, photo_url, linkedin_url) values
+  ('a0000001-0000-0000-0000-000000000001', 'Radhika Dutt', 'Author of Radical Product Thinking', null, 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69deefbba198fd249063ee50_Preferred%20headshot%20-%20Radhika%20Dutt-optimised.jpg', 'https://www.tpma.ca/speakers-authors/radhika-dutt'),
+  ('a0000001-0000-0000-0000-000000000002', 'Ben Erez', 'Co-founder, Insider Loops, Host of Supra Insider Podcast', null, 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69b959efc7517a410678b0b9_d6db6f11-e031-4897-b798-055744748fc2_1311x1311.jpg', 'https://www.tpma.ca/speakers-authors/ben-erez'),
+  ('a0000001-0000-0000-0000-000000000003', 'Marc Baselga', 'Founder', 'Supra', 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69b9593225f1eb8576677dcb_9efda187-8d8c-42f2-a27c-f331a32554b1_797x690.jpg', 'https://www.tpma.ca/speakers-authors/marc-baselga'),
+  ('a0000001-0000-0000-0000-000000000004', 'Michael Ho', 'Founder', 'Progress Everyday', 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69df840ef9204540c27ce8b5_Michael%20Ho.jpg', 'https://www.tpma.ca/speakers-authors/michael-ho'),
+  ('a0000001-0000-0000-0000-000000000005', 'May Wong', 'Product TO', 'Product Ops Consultant', 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/65bba83151324a486b64e262_May%20Wong%20(1).jpg', 'https://www.tpma.ca/speakers-authors/may-wong'),
+  ('a0000001-0000-0000-0000-000000000006', 'Kristine Dizon', null, null, null, null),
+  ('a0000001-0000-0000-0000-000000000007', 'Ana Lobo', null, null, null, null),
+  ('a0000001-0000-0000-0000-000000000008', 'Abinandhini Raju', 'Director, Product Management, Quickplay', null, 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69dea330a00c7a4eac573f28_Abinandhini%20Raju.jpg', 'https://www.tpma.ca/speakers-authors/abinandhini-c-a-raju'),
+  ('a0000001-0000-0000-0000-000000000009', 'Colin Matthews', 'Founder', 'Tech for Product', 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69dea3741d1b9007b249c622_Colin%20Matthews.jpg', 'https://www.tpma.ca/speakers-authors/colin-matthews'),
+  ('a0000001-0000-0000-0000-000000000010', 'Joan Milway', 'Head of Product', 'Common Wealth Retirement', 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69dea341484ef61f3a14e637_Joan%20Milway.jpg', 'https://www.tpma.ca/speakers-authors/joan-milway'),
+  ('a0000001-0000-0000-0000-000000000011', 'Daniel de Repentigny', 'Principal Product Manager - Spotify', null, 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69dfa34c3d7308fe2281cb7a_Daniel%20de%20Re.jpg', 'https://www.tpma.ca/speakers-authors/daniel-de-repentigny'),
+  ('a0000001-0000-0000-0000-000000000012', 'Angeli Mehta', null, null, null, null),
+  ('a0000001-0000-0000-0000-000000000013', 'Emily K Reid', 'Senior Product Manager, Clubs, Ticketmaster/ TicketWeb', null, 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69dfa1a627fd89a1aaa86257_1776260305688.jpg', 'https://www.tpma.ca/speakers-authors/emily-k-reid'),
+  ('a0000001-0000-0000-0000-000000000014', 'Scott Miller, CPA, CMA', 'CEO', 'Miller Advisors Inc', 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69dea318454b337960084222_Scott%20Miller.jpg', 'https://www.tpma.ca/speakers-authors/scott-miller-c6edc'),
+  ('a0000001-0000-0000-0000-000000000015', 'Andrea Michalek', 'Product Leadership Coach and Author', null, 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69df8339340a927191e25d0f_Andrea%20Michalek.jpg', 'https://www.tpma.ca/speakers-authors/andrea-michalek'),
+  ('a0000001-0000-0000-0000-000000000016', 'Ross Saunders', 'Nerd with Trust Issues', 'Ross G Saunders Consulting', 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69df869017841cc1cef862e8_1741388159837.jpeg', 'https://www.tpma.ca/speakers-authors/ross-saunders'),
+  ('a0000001-0000-0000-0000-000000000017', 'Rowan Noronha', 'Product Marketing Leader', null, 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69dea2fef28a5c3a80db9a3f_Rowan%20Noronha.jpg', 'https://www.tpma.ca/speakers-authors/rowan-noronha'),
+  ('a0000001-0000-0000-0000-000000000018', 'April Dunford', 'CEO', 'Ambient Strategy', 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69dea3698396b51137aadec7_April%20Dunford.jpg', 'https://www.tpma.ca/speakers-authors/april-dunford'),
+  ('a0000001-0000-0000-0000-000000000019', 'Ben Yoskovitz', 'Founding Partner', 'Highline Beta', 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69dea37f034dc92b9731fd61_Ben%20Yoskovitz.jpg', 'https://www.tpma.ca/speakers-authors/ben-yoskovitz'),
+  ('a0000001-0000-0000-0000-000000000020', 'Iris Guo', 'AI Product Manager & Career Coach', 'Zynga', 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69dea360454b33796008493d_Iris%20Guo.jpg', 'https://www.tpma.ca/speakers-authors/iris-guo'),
+  ('a0000001-0000-0000-0000-000000000021', 'John Cutler', 'Head of Product', 'Dotwork', 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69df7d9a42c22239b7055027_1516254666144.jpeg', 'https://www.tpma.ca/speakers-authors/john-cutler'),
+  ('a0000001-0000-0000-0000-000000000022', 'Jenya Farris', 'Chief Product Officer', 'Routific', 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69dea3281ec9018980acc6f3_Jenya%20Farris.jpg', 'https://www.tpma.ca/speakers-authors/jenya-farris-e0a3e');
 
 -- ============================================
 -- SESSIONS

@@ -159,7 +159,7 @@ function SpeakerForm({ speaker, onSave, onCancel, onDelete }: SpeakerFormProps) 
         <input
           value={form.linkedin_url}
           onChange={(e) => setForm(f => ({ ...f, linkedin_url: e.target.value }))}
-          placeholder="LinkedIn URL"
+          placeholder="Profile / speaker page or LinkedIn URL"
           className="w-full px-2.5 py-1.5 rounded border border-stone-200 text-xs bg-white
             focus:outline-none focus:ring-2 focus:ring-tpma-blue/30"
         />
