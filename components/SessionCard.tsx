@@ -114,7 +114,7 @@ export function SessionCard({
       className={`
         session-card relative overflow-hidden border-l-[3px]
         ${compact ? 'px-2.5 py-2' : 'px-3 py-2.5'}
-        ${isKeynote ? 'border-indigo-200 border-l-tpma-blue bg-indigo-50/80' : `${roomStyle.tint} ${roomStyle.border}`}
+        ${isKeynote ? 'border-indigo-200 border-l-tpma-blue bg-indigo-50/80' : `border-stone-200 bg-white ${roomStyle.cardBar}`}
         ${hasDetails ? 'session-card-interactive' : ''}
         ${expanded ? 'shadow-sm' : ''}
       `}

@@ -52,6 +52,7 @@ export const ROOM_TAB_UNCONFERENCE: Room = 'Lunch Room'
 
 export interface RoomStyle {
   dot: string
+  cardBar: string
   tint: string
   border: string
   text: string
@@ -60,30 +61,35 @@ export interface RoomStyle {
 export const ROOM_STYLES: Record<Room, RoomStyle> = {
   'Auditorium': {
     dot: 'bg-tpma-blue',
+    cardBar: 'border-l-tpma-blue',
     tint: 'bg-indigo-50',
     border: 'border-indigo-200 border-l-tpma-blue',
     text: 'text-indigo-700',
   },
   'Room 2': {
     dot: 'bg-tpma-coral',
+    cardBar: 'border-l-tpma-coral',
     tint: 'bg-red-50',
     border: 'border-red-200 border-l-tpma-coral',
     text: 'text-red-700',
   },
   'Room 3': {
     dot: 'bg-tpma-gold',
+    cardBar: 'border-l-tpma-gold',
     tint: 'bg-amber-50',
     border: 'border-amber-200 border-l-tpma-gold',
     text: 'text-amber-700',
   },
   'Room 4': {
     dot: 'bg-emerald-500',
+    cardBar: 'border-l-emerald-500',
     tint: 'bg-emerald-50',
     border: 'border-emerald-200 border-l-emerald-500',
     text: 'text-emerald-700',
   },
   'Lunch Room': {
     dot: 'bg-tpma-dark',
+    cardBar: 'border-l-tpma-dark',
     tint: 'bg-slate-50',
     border: 'border-slate-200 border-l-tpma-dark',
     text: 'text-slate-700',
@@ -92,6 +98,7 @@ export const ROOM_STYLES: Record<Room, RoomStyle> = {
 
 export const DEFAULT_ROOM_STYLE: RoomStyle = {
   dot: 'bg-stone-400',
+  cardBar: 'border-l-stone-300',
   tint: 'bg-stone-50',
   border: 'border-stone-200 border-l-stone-300',
   text: 'text-stone-600',
