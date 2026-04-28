@@ -221,7 +221,7 @@ export function SessionCard({
 
       {speakers.length > 0 && (
         compact ? (
-          <p className="mt-1 truncate text-xs text-tpma-dark/60">
+          <p className="mt-1 truncate text-xs text-tpma-dark/75">
             {compactSpeakerSummary}
           </p>
         ) : (
@@ -266,7 +266,7 @@ export function SessionCard({
                     />
                   ) : (
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-tpma-dark/10">
-                      <span className="text-xs font-medium text-tpma-dark/40">
+                      <span className="text-xs font-medium text-tpma-dark/55">
                         {sessionSpeaker.speakers.name.charAt(0)}
                       </span>
                     </div>

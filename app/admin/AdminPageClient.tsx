@@ -87,7 +87,7 @@ export default function AdminPageClient() {
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
           <div>
             <h1 className="font-cirka text-lg font-bold text-tpma-dark">Schedule Admin</h1>
-            <p className="text-[11px] text-tpma-dark/40">TPC 2026</p>
+            <p className="text-[11px] text-tpma-dark/55">TPC 2026</p>
           </div>
           <div className="flex items-center gap-2">
             <a
@@ -99,7 +99,7 @@ export default function AdminPageClient() {
             </a>
             <button
               onClick={handleLogout}
-              className="text-xs text-tpma-dark/40 hover:text-tpma-dark"
+              className="text-xs text-tpma-dark/55 hover:text-tpma-dark"
             >
               Logout
             </button>
@@ -113,7 +113,7 @@ export default function AdminPageClient() {
             className={`pb-2 text-sm font-medium border-b-2 transition-colors ${
               activeTab === 'sessions'
                 ? 'border-tpma-blue text-tpma-dark'
-                : 'border-transparent text-tpma-dark/40 hover:text-tpma-dark/60'
+                : 'border-transparent text-tpma-dark/55 hover:text-tpma-dark/75'
             }`}
           >
             Sessions ({sessions.length})
@@ -123,7 +123,7 @@ export default function AdminPageClient() {
             className={`pb-2 text-sm font-medium border-b-2 transition-colors ${
               activeTab === 'speakers'
                 ? 'border-tpma-blue text-tpma-dark'
-                : 'border-transparent text-tpma-dark/40 hover:text-tpma-dark/60'
+                : 'border-transparent text-tpma-dark/55 hover:text-tpma-dark/75'
             }`}
           >
             Speakers ({speakers.length})
@@ -136,7 +136,7 @@ export default function AdminPageClient() {
           <>
             {/* Action bar */}
             <div className="flex items-center justify-between mb-4">
-              <p className="text-xs text-tpma-dark/40">
+              <p className="text-xs text-tpma-dark/55">
                 {sessions.filter(s => s.status === 'draft').length} draft ·{' '}
                 {sessions.filter(s => s.status === 'published').length} published
               </p>
@@ -178,7 +178,7 @@ export default function AdminPageClient() {
                   {/* Session info */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-tpma-dark/40 font-mono w-20 shrink-0">
+                      <span className="text-xs text-tpma-dark/55 font-mono w-20 shrink-0">
                         {formatTime(session.start_time)}
                       </span>
                       <span className="text-sm font-medium text-tpma-dark truncate">
@@ -186,13 +186,13 @@ export default function AdminPageClient() {
                       </span>
                     </div>
                     <div className="flex items-center gap-2 mt-0.5">
-                      <span className="text-[11px] text-tpma-dark/40">{session.room}</span>
+                      <span className="text-[11px] text-tpma-dark/55">{session.room}</span>
                       <span className="text-tpma-dark/20">·</span>
-                      <span className="text-[11px] text-tpma-dark/40">{session.session_type}</span>
+                      <span className="text-[11px] text-tpma-dark/55">{session.session_type}</span>
                       {session.session_speakers?.length > 0 && (
                         <>
                           <span className="text-tpma-dark/20">·</span>
-                          <span className="text-[11px] text-tpma-dark/40">
+                          <span className="text-[11px] text-tpma-dark/55">
                             {session.session_speakers.map(ss => ss.speakers.name).join(', ')}
                           </span>
                         </>

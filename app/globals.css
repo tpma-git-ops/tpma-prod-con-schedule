@@ -77,8 +77,8 @@
     - `text-3xs` (10px): counters only
 
     Muted text steps are intentionally limited to:
-    - light surfaces: `text-tpma-dark/65`, `/50`, `/40`
-    - dark surfaces: `text-white/70`, `/55`, `/45`
+    - light surfaces: `text-tpma-dark/80`, `/65`, `/55`
+    - dark surfaces: `text-white/85`, `/70`, `/60`
   */
   .schedule-eyebrow {
     @apply font-poppins text-xs font-semibold uppercase tracking-widest;
@@ -107,27 +107,27 @@
   }
 
   .schedule-meta {
-    @apply text-2xs font-medium leading-tight text-tpma-dark/50;
+    @apply text-2xs font-medium leading-tight text-tpma-dark/65;
   }
 
   .schedule-meta-subtle {
-    @apply text-2xs leading-tight text-tpma-dark/40;
+    @apply text-2xs leading-tight text-tpma-dark/55;
   }
 
   .schedule-supporting {
-    @apply text-xs leading-relaxed text-tpma-dark/65;
+    @apply text-xs leading-relaxed text-tpma-dark/80;
   }
 
   .schedule-supporting-subtle {
-    @apply text-xs leading-relaxed text-tpma-dark/40;
+    @apply text-xs leading-relaxed text-tpma-dark/55;
   }
 
   .schedule-supporting-inverse {
-    @apply text-xs leading-relaxed text-white/70;
+    @apply text-xs leading-relaxed text-white/85;
   }
 
   .schedule-supporting-inverse-subtle {
-    @apply text-xs leading-relaxed text-white/45;
+    @apply text-xs leading-relaxed text-white/60;
   }
 
   .schedule-counter {
@@ -137,25 +137,25 @@
   }
 
   .time-label {
-    @apply font-cirka text-xs font-bold uppercase leading-none text-tpma-dark/65 tabular-nums;
+    @apply font-cirka text-xs font-bold uppercase leading-none text-tpma-dark/80 tabular-nums;
     letter-spacing: 0.16em;
     font-variant-numeric: lining-nums tabular-nums;
     font-feature-settings: 'lnum' 1, 'tnum' 1;
   }
 
   .time-label-inverse {
-    @apply text-white/70;
+    @apply text-white/85;
   }
 
   .time-duration {
-    @apply text-2xs font-medium uppercase leading-none text-tpma-dark/50 tabular-nums;
+    @apply text-2xs font-medium uppercase leading-none text-tpma-dark/65 tabular-nums;
     letter-spacing: 0.14em;
     font-variant-numeric: lining-nums tabular-nums;
     font-feature-settings: 'lnum' 1, 'tnum' 1;
   }
 
   .time-duration-inverse {
-    @apply text-white/55;
+    @apply text-white/70;
   }
 }
 

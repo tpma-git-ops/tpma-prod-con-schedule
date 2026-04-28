@@ -24,7 +24,7 @@ export default function Error({
           <h1 className="font-cirka text-2xl md:text-3xl font-bold tracking-tight">
             Toronto Product Con
           </h1>
-          <p className="text-white/60 text-sm mt-1 font-poppins">
+          <p className="text-white/75 text-sm mt-1 font-poppins">
             TMU Ted Rogers School of Management
           </p>
         </div>
@@ -52,13 +52,13 @@ export default function Error({
           <h2 className="font-cirka text-2xl md:text-3xl font-bold text-tpma-dark">
             Something went sideways
           </h2>
-          <p className="text-tpma-dark/60 mt-3 text-sm md:text-base">
+          <p className="text-tpma-dark/75 mt-3 text-sm md:text-base">
             We hit an unexpected hiccup loading this part of the schedule. You can try again, or
             head back to the main agenda.
           </p>
 
           {error.digest && (
-            <p className="mt-4 text-[11px] text-tpma-dark/40 font-mono">
+            <p className="mt-4 text-[11px] text-tpma-dark/55 font-mono">
               Reference: {error.digest}
             </p>
           )}

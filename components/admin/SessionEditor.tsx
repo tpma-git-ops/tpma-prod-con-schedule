@@ -168,7 +168,7 @@ export function SessionEditor({ session, speakers, onClose, onSave }: SessionEdi
           <h2 className="font-cirka text-lg font-bold">
             {isNew ? 'New Session' : 'Edit Session'}
           </h2>
-          <button onClick={onClose} className="text-tpma-dark/40 hover:text-tpma-dark p-1">
+          <button onClick={onClose} className="text-tpma-dark/55 hover:text-tpma-dark p-1">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -178,7 +178,7 @@ export function SessionEditor({ session, speakers, onClose, onSave }: SessionEdi
         <div className="p-4 space-y-4">
           {/* Title */}
           <div>
-            <label className="block text-xs font-medium text-tpma-dark/60 mb-1">Title</label>
+            <label className="block text-xs font-medium text-tpma-dark/75 mb-1">Title</label>
             <input
               value={form.title}
               onChange={(e) => setForm(f => ({ ...f, title: e.target.value }))}
@@ -189,7 +189,7 @@ export function SessionEditor({ session, speakers, onClose, onSave }: SessionEdi
 
           {/* Description */}
           <div>
-            <label className="block text-xs font-medium text-tpma-dark/60 mb-1">Description</label>
+            <label className="block text-xs font-medium text-tpma-dark/75 mb-1">Description</label>
             <textarea
               value={form.description}
               onChange={(e) => setForm(f => ({ ...f, description: e.target.value }))}
@@ -202,7 +202,7 @@ export function SessionEditor({ session, speakers, onClose, onSave }: SessionEdi
           {/* Type + Room */}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-tpma-dark/60 mb-1">Type</label>
+              <label className="block text-xs font-medium text-tpma-dark/75 mb-1">Type</label>
               <select
                 value={form.session_type}
                 onChange={(e) => handleTypeChange(e.target.value as SessionType)}
@@ -215,7 +215,7 @@ export function SessionEditor({ session, speakers, onClose, onSave }: SessionEdi
               </select>
             </div>
             <div>
-              <label className="block text-xs font-medium text-tpma-dark/60 mb-1">Room</label>
+              <label className="block text-xs font-medium text-tpma-dark/75 mb-1">Room</label>
               <select
                 value={form.room}
                 onChange={(e) => setForm(f => ({ ...f, room: e.target.value }))}
@@ -236,7 +236,7 @@ export function SessionEditor({ session, speakers, onClose, onSave }: SessionEdi
           {/* Times */}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-tpma-dark/60 mb-1">Start</label>
+              <label className="block text-xs font-medium text-tpma-dark/75 mb-1">Start</label>
               <input
                 type="time"
                 value={form.start_time}
@@ -246,7 +246,7 @@ export function SessionEditor({ session, speakers, onClose, onSave }: SessionEdi
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-tpma-dark/60 mb-1">End</label>
+              <label className="block text-xs font-medium text-tpma-dark/75 mb-1">End</label>
               <input
                 type="time"
                 value={form.end_time}
@@ -259,7 +259,7 @@ export function SessionEditor({ session, speakers, onClose, onSave }: SessionEdi
 
           {/* Sort Order */}
           <div>
-            <label className="block text-xs font-medium text-tpma-dark/60 mb-1">
+            <label className="block text-xs font-medium text-tpma-dark/75 mb-1">
               Sort Order <span className="text-tpma-dark/30">(lower = earlier in timeline)</span>
             </label>
             <input
@@ -275,7 +275,7 @@ export function SessionEditor({ session, speakers, onClose, onSave }: SessionEdi
           {!FULL_WIDTH_TYPES.includes(form.session_type) && (
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-xs font-medium text-tpma-dark/60">Speakers</label>
+                <label className="text-xs font-medium text-tpma-dark/75">Speakers</label>
                 <button
                   onClick={addSpeaker}
                   className="text-xs text-tpma-blue hover:underline"
@@ -343,7 +343,7 @@ export function SessionEditor({ session, speakers, onClose, onSave }: SessionEdi
           <div className="flex gap-2">
             <button
               onClick={onClose}
-              className="px-4 py-2 text-sm text-tpma-dark/60 hover:text-tpma-dark"
+              className="px-4 py-2 text-sm text-tpma-dark/75 hover:text-tpma-dark"
             >
               Cancel
             </button>

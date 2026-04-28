@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npx tsc *)",
-      "Bash(git rm *)"
+      "Bash(git rm *)",
+      "Bash(xargs -0 perl -pi -e ' *)"
     ]
   }
 }

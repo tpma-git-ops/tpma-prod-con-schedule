@@ -29,7 +29,7 @@ export function ScheduleTimeline({
 }: ScheduleTimelineProps) {
   if (timeBlocks.length === 0) {
     return (
-      <div className="text-center py-20 text-tpma-dark/40">
+      <div className="text-center py-20 text-tpma-dark/55">
         <p className="text-lg font-cirka">No sessions to show</p>
         <p className="text-sm mt-1">Check back soon for updates.</p>
       </div>
@@ -204,7 +204,7 @@ function getFullWidthTitleClassName(sessionType: Session['session_type']) {
   }
 
   if (sessionType === 'break') {
-    return 'block text-sm font-medium text-tpma-dark/40'
+    return 'block text-sm font-medium text-tpma-dark/55'
   }
 
   return 'block text-sm font-medium text-tpma-dark'

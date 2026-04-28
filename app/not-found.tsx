@@ -11,7 +11,7 @@ export default function NotFound() {
           <h1 className="font-cirka text-2xl md:text-3xl font-bold tracking-tight">
             Toronto Product Con
           </h1>
-          <p className="text-white/60 text-sm mt-1 font-poppins">
+          <p className="text-white/75 text-sm mt-1 font-poppins">
             TMU Ted Rogers School of Management
           </p>
         </div>
@@ -25,7 +25,7 @@ export default function NotFound() {
           <h2 className="font-cirka text-2xl md:text-3xl font-bold text-tpma-dark mt-4">
             We couldn&apos;t find that session
           </h2>
-          <p className="text-tpma-dark/60 mt-3 text-sm md:text-base">
+          <p className="text-tpma-dark/75 mt-3 text-sm md:text-base">
             The page you&apos;re looking for may have moved or doesn&apos;t exist. Head back to the
             schedule to see what&apos;s happening.
           </p>

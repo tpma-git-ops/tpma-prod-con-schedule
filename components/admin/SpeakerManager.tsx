@@ -17,7 +17,7 @@ export function SpeakerManager({ speakers, onUpdate }: SpeakerManagerProps) {
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <p className="text-xs text-tpma-dark/40">{speakers.length} speakers</p>
+        <p className="text-xs text-tpma-dark/55">{speakers.length} speakers</p>
         <button
           onClick={() => setShowNew(true)}
           className="px-3 py-1.5 bg-tpma-blue text-white text-xs font-medium rounded-lg
@@ -71,14 +71,14 @@ export function SpeakerManager({ speakers, onUpdate }: SpeakerManagerProps) {
                   />
                 ) : (
                   <div className="w-8 h-8 rounded-full bg-tpma-dark/10 flex items-center justify-center shrink-0">
-                    <span className="text-xs font-medium text-tpma-dark/40">
+                    <span className="text-xs font-medium text-tpma-dark/55">
                       {speaker.name.charAt(0)}
                     </span>
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-tpma-dark truncate">{speaker.name}</p>
-                  <p className="text-[11px] text-tpma-dark/40 truncate">
+                  <p className="text-[11px] text-tpma-dark/55 truncate">
                     {[speaker.title, speaker.company].filter(Boolean).join(' · ') || 'No details'}
                   </p>
                 </div>
@@ -177,7 +177,7 @@ function SpeakerForm({ speaker, onSave, onCancel, onDelete }: SpeakerFormProps) 
           )}
         </div>
         <div className="flex gap-2">
-          <button onClick={onCancel} className="text-xs text-tpma-dark/40 hover:text-tpma-dark px-2 py-1">
+          <button onClick={onCancel} className="text-xs text-tpma-dark/55 hover:text-tpma-dark px-2 py-1">
             Cancel
           </button>
           <button

@@ -24,7 +24,7 @@ export function Pill({
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tpma-blue/30 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50',
     isActive
       ? 'border-tpma-dark bg-tpma-dark text-white shadow-sm'
-      : 'border-stone-200 bg-white text-tpma-dark/70 hover:border-stone-300 hover:bg-stone-100',
+      : 'border-stone-200 bg-white text-tpma-dark/85 hover:border-stone-300 hover:bg-stone-100',
     className,
   ].filter(Boolean).join(' ')
 

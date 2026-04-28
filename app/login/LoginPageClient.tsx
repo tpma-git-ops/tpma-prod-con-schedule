@@ -44,7 +44,7 @@ function LoginForm() {
           <h1 className="font-cirka text-2xl font-bold text-tpma-dark">
             Schedule Admin
           </h1>
-          <p className="text-sm text-tpma-dark/50 mt-1">
+          <p className="text-sm text-tpma-dark/65 mt-1">
             Toronto Product Con 2026
           </p>
         </div>
@@ -59,7 +59,7 @@ function LoginForm() {
         ) : (
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-xs font-medium text-tpma-dark/60 mb-1">
+              <label htmlFor="email" className="block text-xs font-medium text-tpma-dark/75 mb-1">
                 Email
               </label>
               <input
@@ -99,7 +99,7 @@ export default function LoginPageClient() {
     <Suspense
       fallback={
         <main className="min-h-screen flex items-center justify-center px-4">
-          <p className="text-sm text-tpma-dark/50">Loading…</p>
+          <p className="text-sm text-tpma-dark/65">Loading…</p>
         </main>
       }
     >
