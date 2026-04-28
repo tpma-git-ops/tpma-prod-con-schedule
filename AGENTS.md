@@ -20,6 +20,7 @@ This repo is the **Toronto Product Con** schedule app for the **Toronto Product 
 
 ## General
 
+- **Branches:** branch from **`develop`**, open PRs with base **`develop`**. Do not target **`main`** for routine work; maintainers promote **`develop` → `main`** via PR for releases. See **`CONTRIBUTING.md`**.
 - Prefer small, focused changes that match existing project patterns once code exists.
 - Do not add secrets or credentials to the repo; use environment variables and local gitignored config per project norms (`README.md` describes `.env.local`).
 - Assume volunteers may rely on **`README.md`** plus your commit messages—write them so someone new could follow intent next month.

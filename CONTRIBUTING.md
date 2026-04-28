@@ -22,9 +22,17 @@ Everyone participating—issues, discussions, reviews, chat—is expected to fol
 
 If you are not sure, open an issue anyway—small questions are fine.
 
+### Branches
+
+- **`main`** — release / production-aligned code. **No day-to-day development on `main`:** do not push commits directly to it, and do not open routine feature or fix PRs that target `main`.
+- **`develop`** — integration branch for all ongoing work. **Create every contribution branch from `develop`** and **open pull requests against `develop`**.
+- **Promotion to `main`** — when maintainers cut a release, they merge **`develop` → `main`** through a pull request (not by developing on `main`).
+
+If you just cloned the repo, run `git fetch origin` and `git checkout develop` (create your topic branch from there). Forks should track `upstream/develop` the same way. If **`develop` is missing on GitHub**, ask a maintainer to create it from `main` before you branch.
+
 ### Pull requests
 
-1. **Fork** the repository and create a **branch** from `main` (or the default branch), e.g. `fix/room-filter-a11y` or `feat/session-export`.
+1. **Fork** the repository (if you do not have write access). **Branch from `develop`**, e.g. `fix/room-filter-a11y` or `feat/session-export`. Open the PR with **base branch `develop`** (not `main`).
 2. **Keep PRs small** when possible—one logical change is easier to review than a mixed refactor.
 3. **Match existing style** in the files you touch: imports, component patterns, Tailwind usage, formatting.
 4. **Do not commit secrets.** Use `.env.local` locally only; production uses Vercel (or hosting) env configuration.

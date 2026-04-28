@@ -2,6 +2,8 @@
 
 <!-- What changed and why (1–4 sentences)? Link issues: Fixes # -->
 
+**Base branch:** routine PRs should target **`develop`**, not `main`. (Maintainers merge `develop` → `main` when releasing.)
+
 ## Test plan
 
 - [ ] `npm run lint`
