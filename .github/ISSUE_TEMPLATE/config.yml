@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: TPMA website
+    url: https://www.tpma.ca/
+    about: Learn about the Toronto Product Management Association
+  - name: Local setup (README)
+    url: https://github.com/aw-42/tpma-prod-con-schedule/blob/main/README.md
+    about: Clone, Supabase, and run the dev server

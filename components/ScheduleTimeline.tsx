@@ -1,9 +1,18 @@
 'use client'
 
-import { TimeBlock, Room } from '@/lib/types'
+import type { ReactNode } from 'react'
+import { ROOM_TAB_UNCONFERENCE, type Session, type TimeBlock, type Room } from '@/lib/types'
 import { isSessionSaveable } from '@/lib/savedSessions'
 import { formatTime, getDurationMinutes } from '@/lib/utils'
 import { SessionCard } from './SessionCard'
+
+const FULL_WIDTH_EVENT_TYPES = new Set<Session['session_type']>([
+  'break',
+  'lunch',
+  'registration',
+  'afterparty',
+  'announcement',
+])
 
 interface ScheduleTimelineProps {
   timeBlocks: TimeBlock[]
@@ -28,7 +37,7 @@ export function ScheduleTimeline({
   }
 
   return (
-    <div className="space-y-1">
+    <div className="schedule-timeline space-y-[var(--timeline-block-gap)]">
       {timeBlocks.map((block, index) => (
         <TimeBlockRow
           key={`${block.start_time}-${block.end_time}-${index}`}
@@ -53,80 +62,56 @@ function TimeBlockRow({
   savedSessionIdSet: Set<string>
   onToggleSavedSession: (sessionId: string) => void
 }) {
-  const isBreakType = block.sessions.every(
-    s => ['break', 'lunch', 'registration', 'afterparty', 'announcement'].includes(s.session_type)
-  )
+  const isBreakType = block.sessions.every((session) => FULL_WIDTH_EVENT_TYPES.has(session.session_type))
   const duration = getDurationMinutes(block.start_time, block.end_time)
 
-  // Full-width events (breaks, lunch, registration, afterparty)
   if (block.is_full_width || isBreakType) {
     const session = block.sessions[0]
     if (!session) return null
 
     const isBreak = session.session_type === 'break'
     const isAfterparty = session.session_type === 'afterparty'
-    const isRegistration = session.session_type === 'registration'
-    const isLunch = session.session_type === 'lunch'
 
     return (
-      <div className={`
-        flex items-center gap-3 py-3 px-4 my-2 rounded-lg
-        ${isAfterparty ? 'bg-tpma-dark text-white' : ''}
-        ${isRegistration ? 'bg-tpma-blue/5 border border-tpma-blue/20' : ''}
-        ${isLunch ? 'bg-amber-50 border border-amber-200/60' : ''}
-        ${isBreak ? 'border-b border-stone-100' : ''}
-        ${session.session_type === 'announcement' ? 'bg-tpma-blue/5 border border-tpma-blue/20' : ''}
-      `}>
-        <span className={`time-label shrink-0 w-20 ${isAfterparty ? 'text-white/60' : ''}`}>
-          {formatTime(block.start_time)}
-        </span>
-        <div className="flex-1 min-w-0">
-          <span className={`
-            text-sm font-medium
-            ${isBreak ? 'text-tpma-dark/40' : ''}
-            ${isAfterparty ? 'text-white font-cirka text-lg' : ''}
-            ${isRegistration || isLunch ? 'text-tpma-dark' : ''}
-          `}>
+      <TimelineBlockShell
+        startTime={block.start_time}
+        duration={duration}
+        showDuration={!isBreak}
+      >
+        <div className={getFullWidthContentClassName(session.session_type)}>
+          <span className={getFullWidthTitleClassName(session.session_type)}>
             {session.title}
           </span>
           {session.description && !isBreak && (
-            <p className={`text-xs mt-0.5 ${isAfterparty ? 'text-white/60' : 'text-tpma-dark/50'}`}>
+            <p className={`mt-1 ${isAfterparty ? 'schedule-supporting-inverse' : 'schedule-supporting'}`}>
               {session.description}
             </p>
           )}
         </div>
-        {!isBreak && (
-          <span className={`text-xs shrink-0 ${isAfterparty ? 'text-white/40' : 'text-tpma-dark/30'}`}>
-            {duration}m
-          </span>
-        )}
-      </div>
+      </TimelineBlockShell>
     )
   }
 
-  // Parallel session block
-  const roomSessions = activeRoom === 'All'
-    ? block.sessions.filter(s => !s.is_full_width)
-    : block.sessions.filter(s => s.room === activeRoom)
+  const roomSessions =
+    activeRoom === 'All'
+      ? block.sessions.filter((session) => !session.is_full_width)
+      : activeRoom === ROOM_TAB_UNCONFERENCE
+        ? block.sessions.filter((session) => session.session_type === 'unconference')
+        : block.sessions.filter((session) => session.room === activeRoom)
 
   if (roomSessions.length === 0) return null
 
   return (
-    <div className="py-2">
-      {/* Time header */}
-      <div className="flex items-center gap-2 mb-2 px-1">
-        <span className="time-label w-20 shrink-0">
-          {formatTime(block.start_time)}
-        </span>
-        <div className="flex-1 h-px bg-stone-200" />
-        <span className="text-xs text-tpma-dark/30">{duration}m</span>
-      </div>
-
-      {/* Session cards */}
-      <div className="pl-0 md:pl-[88px]">
+    <TimelineBlockShell
+      startTime={block.start_time}
+      duration={duration}
+      showDuration
+    >
+      <div className="min-w-0">
         <div className={`
           grid gap-2
-          ${activeRoom === 'All' && roomSessions.length > 1
+          ${(activeRoom === 'All' || activeRoom === ROOM_TAB_UNCONFERENCE) &&
+          roomSessions.length > 1
             ? 'grid-cols-1 md:grid-cols-2'
             : 'grid-cols-1'
           }
@@ -135,7 +120,13 @@ function TimeBlockRow({
             <SessionCard
               key={session.id}
               session={session}
-              compact={activeRoom === 'All' && roomSessions.length > 1}
+              compact={
+                (activeRoom === 'All' || activeRoom === ROOM_TAB_UNCONFERENCE) &&
+                roomSessions.length > 1
+              }
+              showRoom={
+                activeRoom === 'All' || activeRoom === ROOM_TAB_UNCONFERENCE
+              }
               canSave={isSessionSaveable(session)}
               isSaved={savedSessionIdSet.has(session.id)}
               onToggleSavedSession={onToggleSavedSession}
@@ -143,6 +134,78 @@ function TimeBlockRow({
           ))}
         </div>
       </div>
+    </TimelineBlockShell>
+  )
+}
+
+function TimelineBlockShell({
+  startTime,
+  duration,
+  showDuration,
+  children,
+}: {
+  startTime: string
+  duration: number
+  showDuration: boolean
+  children: ReactNode
+}) {
+  const formattedTime = formatTime(startTime)
+
+  return (
+    <div className="space-y-2 md:space-y-0">
+      <div className="timeline-block-mobile-meta">
+        <span className="time-label">{formattedTime}</span>
+        {showDuration && <span className="time-duration">{duration}m</span>}
+      </div>
+
+      <div className="timeline-block-grid">
+        <div className="timeline-block-desktop-time">
+          <span className="time-label">{formattedTime}</span>
+        </div>
+
+        <div className="min-w-0">{children}</div>
+
+        <div className="timeline-block-desktop-duration">
+          {showDuration && <span className="time-duration">{duration}m</span>}
+        </div>
+      </div>
     </div>
   )
+}
+
+function getFullWidthContentClassName(sessionType: Session['session_type']) {
+  const classNames = ['min-w-0']
+
+  if (sessionType === 'break') {
+    classNames.push('border-b', 'border-stone-100', 'py-3')
+    return classNames.join(' ')
+  }
+
+  classNames.push('rounded-lg', 'border', 'px-4', 'py-3')
+
+  if (sessionType === 'afterparty') {
+    classNames.push('border-transparent', 'bg-tpma-dark', 'text-white')
+  } else if (sessionType === 'registration') {
+    classNames.push('border-stone-200', 'bg-stone-50')
+  } else if (sessionType === 'lunch') {
+    classNames.push('border-amber-200/60', 'bg-amber-50')
+  } else if (sessionType === 'announcement') {
+    classNames.push('border-tpma-blue/20', 'bg-tpma-blue/5')
+  } else {
+    classNames.push('border-stone-200', 'bg-white')
+  }
+
+  return classNames.join(' ')
+}
+
+function getFullWidthTitleClassName(sessionType: Session['session_type']) {
+  if (sessionType === 'afterparty') {
+    return 'block font-cirka text-lg font-bold text-white'
+  }
+
+  if (sessionType === 'break') {
+    return 'block text-sm font-medium text-tpma-dark/40'
+  }
+
+  return 'block text-sm font-medium text-tpma-dark'
 }

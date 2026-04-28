@@ -38,7 +38,7 @@ export default function NotFound() {
               Back to schedule
             </Link>
             <a
-              href="https://www.tpma.ca"
+              href="https://www.tpma.ca/"
               className="inline-flex items-center justify-center rounded-full border border-stone-200 bg-white px-6 py-2.5 text-sm font-semibold text-tpma-dark hover:bg-stone-100 transition-colors"
             >
               Visit tpma.ca

@@ -1,6 +1,8 @@
 # Claude (Claude Code / project context)
 
-**Full agent policy:** see `AGENTS.md` in the repository root. This file exists so tools that only load `CLAUDE.md` still get the essentials.
+Short version: TPMA volunteer project — **Toronto Product Con schedule** built with **Next.js**, **Tailwind**, and **Supabase**. Full setup and folder map are in **`README.md`**.
+
+**Full agent policy:** see **`AGENTS.md`** in the repository root.
 
 ## Planning (must follow)
 

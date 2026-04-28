@@ -51,7 +51,7 @@
   }
 
   .session-card-interactive {
-    @apply cursor-pointer hover:shadow-md active:scale-[0.99];
+    @apply cursor-pointer hover:shadow-md active:scale-[0.99] focus:outline-none focus-visible:ring-2 focus-visible:ring-tpma-blue/30 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50;
   }
 
   .room-pill {
@@ -70,8 +70,92 @@
     @apply bg-emerald-100 text-emerald-800;
   }
 
+  /*
+    Schedule type ramp
+    - `text-xs` (12px): primary supporting copy and filter chips
+    - `text-2xs` (11px): metadata, time rails, dense labels
+    - `text-3xs` (10px): counters only
+
+    Muted text steps are intentionally limited to:
+    - light surfaces: `text-tpma-dark/65`, `/50`, `/40`
+    - dark surfaces: `text-white/70`, `/55`, `/45`
+  */
+  .schedule-eyebrow {
+    @apply font-poppins text-xs font-semibold uppercase tracking-widest;
+  }
+
+  .schedule-timeline {
+    --timeline-time-col: 5rem;
+    --timeline-block-gap: 0.75rem;
+  }
+
+  .timeline-block-grid {
+    @apply md:grid md:items-start md:gap-x-4;
+    grid-template-columns: var(--timeline-time-col) minmax(0, 1fr) auto;
+  }
+
+  .timeline-block-mobile-meta {
+    @apply flex items-center justify-between gap-3 px-1 md:hidden;
+  }
+
+  .timeline-block-desktop-time {
+    @apply hidden md:block md:pt-3;
+  }
+
+  .timeline-block-desktop-duration {
+    @apply hidden md:flex md:justify-end md:pt-3;
+  }
+
+  .schedule-meta {
+    @apply text-2xs font-medium leading-tight text-tpma-dark/50;
+  }
+
+  .schedule-meta-subtle {
+    @apply text-2xs leading-tight text-tpma-dark/40;
+  }
+
+  .schedule-supporting {
+    @apply text-xs leading-relaxed text-tpma-dark/65;
+  }
+
+  .schedule-supporting-subtle {
+    @apply text-xs leading-relaxed text-tpma-dark/40;
+  }
+
+  .schedule-supporting-inverse {
+    @apply text-xs leading-relaxed text-white/70;
+  }
+
+  .schedule-supporting-inverse-subtle {
+    @apply text-xs leading-relaxed text-white/45;
+  }
+
+  .schedule-counter {
+    @apply text-3xs font-semibold leading-none tabular-nums;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: 'lnum' 1, 'tnum' 1;
+  }
+
   .time-label {
-    @apply font-poppins text-sm font-semibold text-tpma-dark/60 tabular-nums;
+    @apply font-cirka text-xs font-bold uppercase leading-none text-tpma-dark/65 tabular-nums;
+    letter-spacing: 0.16em;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: 'lnum' 1, 'tnum' 1;
+  }
+
+  .time-label-inverse {
+    @apply text-white/70;
+  }
+
+  .time-duration {
+    @apply text-2xs font-medium uppercase leading-none text-tpma-dark/50 tabular-nums;
+    letter-spacing: 0.14em;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: 'lnum' 1, 'tnum' 1;
+  }
+
+  .time-duration-inverse {
+    @apply text-white/55;
   }
 }
 

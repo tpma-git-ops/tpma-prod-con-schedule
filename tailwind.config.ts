@@ -4,6 +4,7 @@ const config: Config = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './lib/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
@@ -16,6 +17,10 @@ const config: Config = {
           gold: '#FFCF60',
           coral: '#FF6B60',
         },
+      },
+      fontSize: {
+        '2xs': ['0.6875rem', { lineHeight: '0.95rem' }],
+        '3xs': ['0.625rem', { lineHeight: '0.8rem' }],
       },
       fontFamily: {
         cirka: ['Cirka', 'Georgia', 'serif'],

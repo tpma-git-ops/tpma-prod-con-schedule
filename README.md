@@ -1,101 +1,103 @@
-# TPC2026 Schedule App
+# Toronto Product Con — Schedule App
 
-Conference schedule for Toronto Product Con 2026.
+Web application for the **[Toronto Product Con](https://www.tpma.ca/conference/toronto-product-conference)** — the annual conference from the **[Toronto Product Management Association (TPMA)](https://www.tpma.ca/)**.
 
-## Quick Start
+The app gives attendees a browsable day-of schedule (sessions by time and room) and gives organisers an admin area to manage sessions, drafts, and speakers. Updates to published content propagate to open schedule pages in realtime so the floor does not depend on manual refreshes after every edit.
 
-### 1. Create Supabase Project
+## Features
 
-1. Go to [supabase.com](https://supabase.com) and create a new project
-2. In SQL Editor, run `supabase/schema.sql`
-3. Then run `supabase/seed.sql`
-4. **Update the admin emails** in the seed file before running (or update the `admin_emails` table after)
+| Area | What it does |
+|------|----------------|
+| **Public schedule** | Timeline view, room filters, favouriting (where enabled), live updates from Supabase Realtime when organisers publish or change sessions. |
+| **Admin** | Magic-link sign-in for approved emails; draft vs published; session and speaker editing (`/login` → `/admin`). |
 
-### 2. Configure Supabase Auth
+**Implementation:** [Next.js](https://nextjs.org/) 14 (App Router) · [React](https://react.dev/) 18 · [TypeScript](https://www.typescriptlang.org/) · [Tailwind CSS](https://tailwindcss.com/) · [Supabase](https://supabase.com/) (Postgres, Auth, Realtime).
 
-1. Go to Authentication > URL Configuration
-2. Set Site URL to `http://localhost:3000` (update to production URL later)
-3. Add `http://localhost:3000/api/auth/callback` to Redirect URLs
-4. Enable Email provider (it's on by default)
-5. In Email Templates, the magic link template should work as-is
+Design tokens and UI conventions are described in **`docs/tpc2026-design-system.md`** — read that before substantial visual changes.
 
-### 3. Set Up the App
+## Local development
+
+Volunteers and maintainers run the app against their own Supabase project (the [free tier](https://supabase.com/pricing) is enough for development).
+
+### Prerequisites
+
+- **Node.js** — current LTS (e.g. 20+)
+- **npm** — bundled with Node
+- **Supabase account** — one project per developer, or a shared dev database (coordinate schema and seed changes if you share)
+
+### Install and run
 
 ```bash
-# Clone/copy this project
-cd tpc-schedule
-
-# Install dependencies
+git clone <repository-url>
+cd <repo-directory>
 npm install
-
-# Copy env file and add your Supabase credentials
 cp .env.local.example .env.local
-# Edit .env.local with your Supabase URL and anon key
-# (Found in Supabase > Settings > API)
+```
 
-# Run dev server
+Configure Supabase:
+
+1. Create a project at [supabase.com](https://supabase.com).
+2. **SQL Editor:** run `supabase/schema.sql`, then `supabase/seed.sql` (edit **admin emails** in the seed file first, or insert into `admin_emails` afterward — you need a listed address to sign into `/admin`).
+3. **Authentication → URL configuration:** set **Site URL** to `http://localhost:3000` and add **Redirect URL** `http://localhost:3000/api/auth/callback`. Keep the email provider enabled for magic links.
+4. **Project Settings → API:** copy **Project URL** and **`anon` public key** into `.env.local` as `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+
+Start the app:
+
+```bash
 npm run dev
 ```
 
-### 4. Add Cirka Font
+Open [http://localhost:3000](http://localhost:3000). Do not commit `.env.local` (it is gitignored).
 
-The TPMA brand uses Cirka for headings. Copy the files into `public/fonts/` with these names:
+### Fonts (optional)
 
-- `Cirka-Light.ttf`
-- `Cirka-Regular.ttf`
-- `Cirka-Bold.ttf`
+TPMA marketing uses **Cirka** for headings. With a valid licence, place `Cirka-Light.ttf`, `Cirka-Regular.ttf`, and `Cirka-Bold.ttf` under `public/fonts/` — see `globals.css` (`@font-face`). Without those files the UI uses a Georgia fallback. Prefer `.woff2` in production if you convert assets and update `url()` / `format()` accordingly.
 
-`globals.css` loads them via `@font-face`. For production you can swap to `.woff2` copies (smaller) and change the `url()`/`format()` lines accordingly.
+### npm scripts
 
-The app falls back to Georgia if Cirka files are missing.
+| Command | Purpose |
+|---------|---------|
+| `npm run dev` | Development server with hot reload |
+| `npm run build` | Production build |
+| `npm run start` | Run production build locally |
+| `npm run lint` | ESLint |
 
-### 5. Deploy to Vercel
-
-```bash
-npm i -g vercel
-vercel
-```
-
-Then:
-- Add environment variables in Vercel dashboard
-- Point `schedule.torontoproductcon.com` DNS to Vercel
-- Update Supabase Auth redirect URLs to include the production domain
-
-## Structure
+## Repository layout
 
 ```
-/app
-  /page.tsx          → Public schedule (attendee view)
-  /admin/page.tsx    → Admin panel (session management)
-  /login/page.tsx    → Magic link login
-  /api/auth/callback → Auth callback handler
-/components
-  /ScheduleTimeline  → Main timeline rendering
-  /SessionCard       → Individual session cards
-  /RoomFilter        → Room filter tabs
-  /admin/            → Admin-only components
-/lib
-  /types.ts          → TypeScript types
-  /utils.ts          → Time formatting, grouping
-  /supabase-*.ts     → Supabase client setup
-/supabase
-  /schema.sql        → Database schema
-  /seed.sql          → Initial data
+app/                    Next.js routes — public schedule, admin, login, auth callback
+components/             Schedule timeline, session cards, filters, admin UI
+lib/                    Types, utilities, Supabase clients (browser/server)
+middleware.ts           Session cookie refresh for Supabase Auth
+docs/                   Design system notes
+plans/backlog|complete/ Implementation and design plans
+supabase/               schema.sql, seed.sql (+ other SQL helpers in repo)
 ```
 
-## Admin Usage
+## Trying admin locally
 
-1. Go to `/login` and enter an admin email
-2. Click the magic link in your email
-3. You'll land on `/admin`
-4. Toggle sessions between draft/published with the switch
-5. Published sessions appear immediately on the public schedule (real-time)
-6. Click any session to edit title, description, room, time, speakers
-7. Use the Speakers tab to manage the speaker directory
+1. Ensure your email appears in Supabase **`admin_emails`** (from seed or manual insert).
+2. Go to `/login`, request a magic link, complete sign-in → `/admin`.
+3. Publish or edit sessions: connected public clients see changes via Realtime without reloading.
 
-## Real-Time Updates
+## Production deployment
 
-The public schedule uses Supabase Realtime subscriptions. When an admin:
-- Publishes a draft session → it appears on all connected devices
-- Updates a session title → the change propagates immediately
-- No page refresh needed
+Typical hosting is **Vercel** (or any Node host that supports Next.js):
+
+- Configure the same Supabase environment variables as in `.env.local.example`.
+- Register the production origin in Supabase Auth (Site URL + redirect for `/api/auth/callback`).
+- Point the conference schedule hostname (e.g. `schedule.torontoproductcon.com`) at the deployment when DNS is ready.
+
+`npm i -g vercel` is optional but useful for env sync and previews.
+
+## Contributing
+
+Development norms, security reporting, and community expectations live in **`CONTRIBUTING.md`**, **`SECURITY.md`**, and **`CODE_OF_CONDUCT.md`**. Automated contributors should follow **`AGENTS.md`** and the `plans/` workflow. If you are stuck on Supabase or env setup, open an issue with what you tried.
+
+## Troubleshooting
+
+| Symptom | Things to check |
+|---------|------------------|
+| Empty schedule or client errors | Schema and seed applied in order; env var names match `.env.local.example`; restart `npm run dev` after changing env. |
+| Magic link fails or redirects incorrectly | Redirect URL matches your dev URL (including port) and `/api/auth/callback`. |
+| No access to `/admin` | Email present in **`admin_emails`** in Supabase. |

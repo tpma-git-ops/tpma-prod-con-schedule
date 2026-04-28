@@ -1,6 +1,8 @@
 # Codex and OpenAI-style coding agents
 
-**Canonical policy:** `AGENTS.md` in the repository root. Read that file for the full set of project agent rules.
+**Canonical policy:** **`AGENTS.md`** in the repository root — read it for planning rules and project context.
+
+This repository powers the TPMA **Toronto Product Con** schedule (Next.js + Supabase). Humans onboard via **`README.md`**; agents follow **`AGENTS.md`** for backlog plans and conventions.
 
 ## Planning (required)
 

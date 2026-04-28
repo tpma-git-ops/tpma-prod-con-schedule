@@ -42,21 +42,21 @@ Tighten the color system so room treatments, keynote vs. room styling, utility r
 
 ## Implementation Steps
 
-- [ ] Add centralized room style map `{ dot, tint, border, text }` and migrate `lib/types.ts` light variant into it or delete redundancy.
-- [ ] Update `SessionCard` and `RoomFilter` to import shared map; delete local duplicates.
-- [ ] Preserve fallback styling for unknown room strings and non-room values while centralizing room tokens.
-- [ ] Implement keynote distinction without color clash by converting the existing `Keynote` meta label into a badge; verify Auditorium + keynote vs. Auditorium + non-keynote.
-- [ ] Split Registration vs. Announcement styling (stone vs. blue or vice versa — document which is which for future editors).
-- [ ] Replace saved ring with star + top-edge accent; visually verify Room 3 + saved combo.
-- [ ] Update or supersede `docs/tpc2026-design-system.md` so the repo documents the same accent system the UI uses.
+- [x] Add centralized room style map `{ dot, tint, border, text }` and migrate `lib/types.ts` light variant into it or delete redundancy.
+- [x] Update `SessionCard` and `RoomFilter` to import shared map; delete local duplicates.
+- [x] Preserve fallback styling for unknown room strings and non-room values while centralizing room tokens.
+- [x] Implement keynote distinction without color clash by converting the existing `Keynote` meta label into a badge; verify Auditorium + keynote vs. Auditorium + non-keynote.
+- [x] Split Registration vs. Announcement styling. Implemented choice: `announcement` stays blue, `registration` uses neutral stone.
+- [x] Replace saved ring with star + top-edge accent; visually verify Room 3 + saved combo.
+- [x] Update or supersede `docs/tpc2026-design-system.md` so the repo documents the same accent system the UI uses.
 
 ## Testing / Review
 
-- [ ] All rooms still read correctly in filter and on cards (including dark/light balance).
-- [ ] Unknown room strings still render with safe fallback styles instead of broken or missing accents.
-- [ ] Keynote and non-keynote in same room are distinguishable without relying on duplicate blue borders.
-- [ ] Saved + Room 3 does not double-read as “extra gold ring.”
+- [x] All rooms still read correctly in filter and on cards (including dark/light balance).
+- [x] Unknown room strings still render with safe fallback styles instead of broken or missing accents.
+- [x] Keynote and non-keynote in same room are distinguishable without relying on duplicate blue borders.
+- [x] Saved + Room 3 does not double-read as “extra gold ring.”
 
 ## Open Questions
 
-- Which utility row (Registration vs. Announcement) should stay on brand blue vs. neutral, if marketing has a preference.
+- Resolved for implementation: `announcement` stays on the brand-blue treatment and `registration` uses the neutral stone treatment.

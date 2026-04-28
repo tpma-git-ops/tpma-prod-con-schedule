@@ -106,29 +106,33 @@ Base unit: **4px**
 
 ```
 ┌─────────────────────────────────────┐
-│ [OVERLINE: Track Tag]  [Gold Badge] │  ← --color-gray-100 bg for tag
+│ [Room · Type]            [★ Saved]  │
 │                                     │
 │ Session Title (H3, Bold)            │  ← --color-black
-│ Speaker Name · Room 301             │  ← --color-gray-400, Caption
+│ Speaker Name · Company              │  ← --color-gray-400, Caption
 │                                     │
-│ 10:00 AM - 10:45 AM                 │  ← --color-gray-600, Caption
-│                        [♡ Bookmark] │  ← --color-blue on active
+│ Description / expanded details      │
+│                        [★ Bookmark] │  ← --color-gold when saved
 └─────────────────────────────────────┘
   radius: --radius-md
   padding: --md
   shadow: --shadow-card
-  border-left: 3px solid (track color)
+  border-left: 3px solid (room color)
+  top accent: 2px solid --color-gold when saved
 ```
 
-### Track Color Coding
+### Room Color Coding
 
-| Track               | Color              | Left Border Accent |
-|---------------------|--------------------|--------------------|
-| Keynote             | `--color-gold`     | 3px solid          |
-| Product Strategy    | `--color-blue`     | 3px solid          |
-| AI & Emerging Tech  | `#8B5CF6` (purple) | 3px solid          |
-| Career & Leadership | `#10B981` (green)  | 3px solid          |
-| Unconference        | `--color-coral`    | 3px solid          |
+| Room         | Dot / Left Accent | Surface Tint |
+|--------------|-------------------|--------------|
+| Auditorium   | `--color-blue`    | Indigo 50    |
+| Room 2       | `--color-coral`   | Red 50       |
+| Room 3       | `--color-gold`    | Amber 50     |
+| Room 4       | `#10B981`         | Emerald 50   |
+| Lunch Room   | `--color-dark`    | Slate 50     |
+
+- Session type is secondary metadata, not the primary card accent.
+- Keynote uses a filled gold badge in the meta row plus larger title treatment, while still inheriting the room accent.
 
 ### Time Block Divider
 

@@ -6,7 +6,7 @@ Unify **My Schedule** and **room filter** controls into one pill pattern, improv
 
 ## Context
 
-- “My Schedule” pill (`app/page.tsx` ~181–187) and room pills (`RoomFilter.tsx` ~38–45) use **different** border/active styles.
+- “My Schedule” pill (`app/SchedulePageClient.tsx`) and room pills (`RoomFilter.tsx`) use **different** border/active styles.
 - Caption “Star sessions to save them” uses `text-tpma-dark/45`, which reads **weak** on `stone-50`.
 - Sticky header already has a bottom border, but it has **no shadow**; on scroll it still blends into the schedule body.
 
@@ -41,13 +41,14 @@ Unify **My Schedule** and **room filter** controls into one pill pattern, improv
 
 ## Implementation Steps
 
-- [ ] Add a shared `Pill` shell component or utility with optional leading/trailing content and documented focus/active styles.
-- [ ] Migrate `page.tsx` `My Schedule` control and `RoomFilter` pills to the shared shell while preserving the room dots, star icon, and saved-count badge.
-- [ ] Increase saved empty-copy contrast without moving the message into the pill; verify the bar stays stable on narrow mobile widths.
-- [ ] Reuse the existing sticky border and add a conditional shadow after scroll via sentinel state.
+- [x] Add a shared `Pill` shell component or utility with optional leading/trailing content and documented focus/active styles.
+- [x] Migrate `SchedulePageClient.tsx` `My Schedule` control and `RoomFilter` pills to the shared shell while preserving the room dots, star icon, and saved-count badge.
+- [x] Increase saved empty-copy contrast without moving the message into the pill; verify the bar stays stable on narrow mobile widths.
+- [x] Reuse the existing sticky border and add a conditional shadow after scroll via sentinel state.
 
 ## Testing / Review
 
+- [x] Production build passes (`npm run build`).
 - [ ] Keyboard and focus order through pills unchanged or improved; `focus-visible` state is obvious.
 - [ ] Active room + My Schedule on together still look coherent.
 - [ ] Saved bar does not wrap or overflow on narrow mobile widths when the saved count changes.
@@ -55,7 +56,7 @@ Unify **My Schedule** and **room filter** controls into one pill pattern, improv
 - [ ] Scroll shadow doesn’t flicker on iOS; performance acceptable.
 - [ ] Sticky divider/shadow combination reads as separation without looking double-stacked.
 
-## Open Questions
+## Resolved Decisions
 
-- Whether room pills should also expose `aria-pressed` for parity, or keep their current single-select button semantics with only visual active state.
-- Whether shadow should appear only after first pixel of scroll vs. threshold (e.g. 8px) to avoid jitter.
+- Room pills kept their single-select button semantics; only `My Schedule` exposes `aria-pressed`.
+- The sticky shadow appears after roughly **8px** of scroll via `IntersectionObserver` `rootMargin`.
