@@ -27,6 +27,9 @@ const speakers = [
   { id: 'a0000001-0000-0000-0000-000000000020', slug: 'iris-guo' },
   { id: 'a0000001-0000-0000-0000-000000000021', slug: 'john-cutler' },
   { id: 'a0000001-0000-0000-0000-000000000022', slug: 'jenya-farris-e0a3e' },
+  { id: 'a0000001-0000-0000-0000-000000000023', slug: 'andrew-shaw' },
+  { id: 'a0000001-0000-0000-0000-000000000024', slug: 'amber-foucault' },
+  { id: 'a0000001-0000-0000-0000-000000000025', slug: 'john-stetic' },
 ]
 
 function parseOgImage(html) {

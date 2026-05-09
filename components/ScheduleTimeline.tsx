@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 import { ROOM_TAB_UNCONFERENCE, type Session, type TimeBlock, type Room } from '@/lib/types'
 import { isSessionSaveable } from '@/lib/savedSessions'
 import { formatTime, getDurationMinutes } from '@/lib/utils'
+import { linkifyText } from '@/lib/linkifyText'
 import { SessionCard } from './SessionCard'
 
 const FULL_WIDTH_EVENT_TYPES = new Set<Session['session_type']>([
@@ -84,7 +85,7 @@ function TimeBlockRow({
           </span>
           {session.description && !isBreak && (
             <p className={`mt-1 ${isAfterparty ? 'schedule-supporting-inverse' : 'schedule-supporting'}`}>
-              {session.description}
+              {linkifyText(session.description)}
             </p>
           )}
         </div>

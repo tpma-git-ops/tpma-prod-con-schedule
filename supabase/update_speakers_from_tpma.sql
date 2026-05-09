@@ -152,3 +152,24 @@ update public.speakers set
   photo_url = 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69dea3281ec9018980acc6f3_Jenya%20Farris.jpg',
   linkedin_url = 'https://www.tpma.ca/speakers-authors/jenya-farris-e0a3e'
 where id = 'a0000001-0000-0000-0000-000000000022';
+
+-- The Product Recruiter session (Andrew Shaw moderator; Amber Foucault, John Stetic)
+-- Source: https://www.tpma.ca/conference/toronto-product-conference
+insert into public.speakers (id, name, title, company, photo_url, linkedin_url) values
+  ('a0000001-0000-0000-0000-000000000023', 'Andrew Shaw', 'Head of Executive & Product Search', 'The Product Recruiter', 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69dea3588f28796fc566c88e_Andrew%20Shaw.jpg', 'https://www.tpma.ca/speakers-authors/andrew-shaw'),
+  ('a0000001-0000-0000-0000-000000000024', 'Amber Foucault', 'Senior Vice President of Product Management', 'Dayforce', 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69dea2e4d64d43ecf71f9310_Amber%20Foucault.jpg', 'https://www.tpma.ca/speakers-authors/amber-foucault'),
+  ('a0000001-0000-0000-0000-000000000025', 'John Stetic', 'CPO', 'Ziflow', 'https://cdn.prod.website-files.com/640a6c2e1897820dfd10615d/69dea2f4d3a487e039cddeb2_John%20Stetic.jpg', 'https://www.tpma.ca/speakers-authors/john-stetic')
+on conflict (id) do update set
+  name = excluded.name,
+  title = excluded.title,
+  company = excluded.company,
+  photo_url = excluded.photo_url,
+  linkedin_url = excluded.linkedin_url;
+
+delete from public.session_speakers
+where session_id = 'b0000001-0000-0000-0000-000000000026';
+
+insert into public.session_speakers (session_id, speaker_id, role, display_order) values
+  ('b0000001-0000-0000-0000-000000000026', 'a0000001-0000-0000-0000-000000000023', 'moderator', 1),
+  ('b0000001-0000-0000-0000-000000000026', 'a0000001-0000-0000-0000-000000000024', 'speaker', 2),
+  ('b0000001-0000-0000-0000-000000000026', 'a0000001-0000-0000-0000-000000000025', 'speaker', 3);

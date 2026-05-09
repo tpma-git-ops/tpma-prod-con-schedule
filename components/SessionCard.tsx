@@ -2,6 +2,7 @@
 
 import { KeyboardEvent, MouseEvent, useId, useState } from 'react'
 import { Session, SessionSpeaker, SESSION_TYPE_LABELS, getRoomStyle } from '@/lib/types'
+import { linkifyText } from '@/lib/linkifyText'
 import { isLinkedInProfileUrl } from '@/lib/speakerLinks'
 
 interface SessionCardProps {
@@ -48,6 +49,66 @@ function buildCompactSpeakerSummary(
   return speakers.map((speaker) => speaker.speakers.name).join(', ')
 }
 
+function selectCompactAvatarSpeakers(
+  regularSpeakers: SessionSpeaker[],
+  moderators: SessionSpeaker[],
+  panelists: SessionSpeaker[],
+  hosts: SessionSpeaker[],
+  speakers: SessionSpeaker[]
+) {
+  if (regularSpeakers.length > 0) return regularSpeakers
+  if (moderators.length > 0) return moderators
+  if (panelists.length > 0) return panelists
+  if (hosts.length > 0) return hosts
+  return speakers
+}
+
+function SpeakerAvatarStack({
+  speakers,
+  size,
+  ringColorClass,
+}: {
+  speakers: SessionSpeaker[]
+  size: 'xs' | 'sm'
+  ringColorClass: string
+}) {
+  if (speakers.length === 0) {
+    return null
+  }
+
+  const dimensionClass = size === 'xs' ? 'h-5 w-5' : 'h-6 w-6'
+  const initialClass = size === 'xs' ? 'text-[9px]' : 'text-[10px]'
+  const stacked = speakers.length > 1
+  const ringClass = stacked ? `ring-2 ${ringColorClass}` : ''
+
+  return (
+    <span
+      aria-hidden="true"
+      className={`inline-flex shrink-0 items-center ${stacked ? '-space-x-1.5' : ''}`}
+    >
+      {speakers.map((sessionSpeaker) =>
+        sessionSpeaker.speakers.photo_url ? (
+          <img
+            key={sessionSpeaker.id}
+            src={sessionSpeaker.speakers.photo_url}
+            alt=""
+            className={`${dimensionClass} rounded-full object-cover ${ringClass}`}
+          />
+        ) : (
+          <span
+            key={sessionSpeaker.id}
+            className={`${dimensionClass} flex items-center justify-center rounded-full bg-tpma-dark/10 ${ringClass}`}
+          >
+            <span className={`${initialClass} font-medium text-tpma-dark/55`}>
+              {sessionSpeaker.speakers.name.charAt(0)}
+            </span>
+          </span>
+        )
+      )}
+    </span>
+  )
+}
+
 export function SessionCard({
   session,
   compact = false,
@@ -79,6 +140,14 @@ export function SessionCard({
     hosts,
     speakers
   )
+  const compactAvatarSpeakers = selectCompactAvatarSpeakers(
+    regularSpeakers,
+    moderators,
+    panelists,
+    hosts,
+    speakers
+  )
+  const avatarRingColorClass = isKeynote ? 'ring-indigo-50' : 'ring-white'
 
   const toggleExpanded = () => {
     if (!hasDetails) {
@@ -139,7 +208,7 @@ export function SessionCard({
             id={titleId}
             className={`
               font-cirka font-bold leading-tight tracking-tight text-tpma-dark
-              ${isKeynote ? (compact ? 'text-base' : 'text-lg') : compact ? 'text-sm' : 'text-base'}
+              ${isKeynote ? (compact ? 'text-lg' : 'text-xl') : compact ? 'text-base' : 'text-lg'}
             `}
           >
             {session.title}
@@ -221,29 +290,57 @@ export function SessionCard({
 
       {speakers.length > 0 && (
         compact ? (
-          <p className="mt-1 truncate text-xs text-tpma-dark/75">
-            {compactSpeakerSummary}
-          </p>
+          <div className="mt-1 flex min-w-0 items-center gap-1.5">
+            <SpeakerAvatarStack
+              speakers={compactAvatarSpeakers}
+              size="xs"
+              ringColorClass={avatarRingColorClass}
+            />
+            <p className="min-w-0 truncate text-xs text-tpma-dark/75">
+              {compactSpeakerSummary}
+            </p>
+          </div>
         ) : (
-          <div className="mt-1">
+          <div className="mt-1 space-y-1">
             {regularSpeakers.length > 0 && (
-              <p className="schedule-supporting">
-                {regularSpeakers.map((speaker) => speaker.speakers.name).join(' & ')}
-                {regularSpeakers[0]?.speakers.company && (
-                  <span className="schedule-supporting-subtle"> · {regularSpeakers[0].speakers.company}</span>
-                )}
-              </p>
+              <div className="flex min-w-0 items-center gap-2">
+                <SpeakerAvatarStack
+                  speakers={regularSpeakers}
+                  size="sm"
+                  ringColorClass={avatarRingColorClass}
+                />
+                <p className="schedule-supporting min-w-0">
+                  {regularSpeakers.map((speaker) => speaker.speakers.name).join(' & ')}
+                  {regularSpeakers[0]?.speakers.company && (
+                    <span className="schedule-supporting-subtle"> · {regularSpeakers[0].speakers.company}</span>
+                  )}
+                </p>
+              </div>
             )}
             {moderators.length > 0 && (
-              <p className="schedule-supporting">
-                <span className="schedule-supporting-subtle">Moderated by </span>
-                {moderators.map((speaker) => speaker.speakers.name).join(', ')}
-              </p>
+              <div className="flex min-w-0 items-center gap-2">
+                <SpeakerAvatarStack
+                  speakers={moderators}
+                  size="sm"
+                  ringColorClass={avatarRingColorClass}
+                />
+                <p className="schedule-supporting min-w-0">
+                  <span className="schedule-supporting-subtle">Moderated by </span>
+                  {moderators.map((speaker) => speaker.speakers.name).join(', ')}
+                </p>
+              </div>
             )}
             {panelists.length > 0 && (
-              <p className="mt-0.5 schedule-supporting-subtle">
-                {panelists.map((speaker) => speaker.speakers.name).join(', ')}
-              </p>
+              <div className="flex min-w-0 items-center gap-2">
+                <SpeakerAvatarStack
+                  speakers={panelists}
+                  size="sm"
+                  ringColorClass={avatarRingColorClass}
+                />
+                <p className="schedule-supporting-subtle min-w-0">
+                  {panelists.map((speaker) => speaker.speakers.name).join(', ')}
+                </p>
+              </div>
             )}
           </div>
         )
@@ -315,7 +412,7 @@ export function SessionCard({
 
           {session.description && (
             <p className={`schedule-supporting ${speakers.length > 0 ? 'mt-3' : ''}`}>
-              {session.description}
+              {linkifyText(session.description)}
             </p>
           )}
         </div>
