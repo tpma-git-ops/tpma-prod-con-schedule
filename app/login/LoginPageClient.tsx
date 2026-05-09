@@ -2,14 +2,12 @@
 
 import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { createClient } from '@/lib/supabase-browser'
 
 function LoginForm() {
   const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const supabase = createClient()
   const searchParams = useSearchParams()
 
   useEffect(() => {
@@ -22,19 +20,27 @@ function LoginForm() {
     setLoading(true)
     setError('')
 
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: {
-        emailRedirectTo: `${window.location.origin}/api/auth/callback`,
-      },
-    })
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      })
 
-    if (error) {
-      setError(error.message)
-    } else {
+      if (!response.ok) {
+        const body = await response.json().catch(() => null)
+        setError(body?.error || 'Unable to send login link.')
+        return
+      }
+
       setSent(true)
+    } catch {
+      setError('Unable to send login link.')
+    } finally {
+      setLoading(false)
     }
-    setLoading(false)
   }
 
   return (
