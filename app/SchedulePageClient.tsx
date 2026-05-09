@@ -208,44 +208,68 @@ export default function SchedulePageClient() {
     <main className="min-h-screen bg-[#F4F3EC]">
       {/* Header */}
       <header className="bg-tpma-dark text-white">
-        <div className="max-w-3xl mx-auto px-4 py-6">
+        <div className="max-w-3xl xl:max-w-7xl mx-auto px-4 py-6">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
               <p className="schedule-eyebrow text-tpma-gold mb-1">
                 May 28, 2026
               </p>
               <h1 className="font-cirka text-2xl md:text-3xl font-bold tracking-tight">
-                Toronto Product Con
+                <a
+                  href="https://www.tpma.ca/conference/toronto-product-conference"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="rounded-sm hover:text-tpma-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tpma-gold focus-visible:ring-offset-2 focus-visible:ring-offset-tpma-dark transition-colors"
+                >
+                  Toronto Product Con
+                  <span className="sr-only"> conference home (opens in new tab)</span>
+                </a>
               </h1>
               <p className="text-white/75 text-sm mt-1 font-poppins">
                 TMU Ted Rogers School of Management
               </p>
+            </div>
+            <div className="shrink-0 mt-1 flex flex-col items-end gap-3 sm:flex-row sm:items-center">
               <a
                 href="https://www.tpma.ca/conference/toronto-product-conference"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="mt-3 inline-flex text-sm font-semibold text-white/90 hover:text-tpma-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tpma-gold focus-visible:ring-offset-2 focus-visible:ring-offset-tpma-dark rounded-sm transition-colors"
+                className="inline-flex items-center gap-1.5 rounded-sm text-sm font-semibold text-white/90 hover:text-tpma-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tpma-gold focus-visible:ring-offset-2 focus-visible:ring-offset-tpma-dark transition-colors"
               >
-                Conference Home
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  className="h-4 w-4"
+                >
+                  <path
+                    d="M8.5 5.5 4 10m0 0 4.5 4.5M4 10h9a3 3 0 0 0 0-6h-1"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <span>Conference Home</span>
                 <span className="sr-only"> (opens in new tab)</span>
               </a>
+              <a
+                href="https://www.tpma.ca"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Toronto Product Management Association"
+                className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tpma-gold focus-visible:ring-offset-2 focus-visible:ring-offset-tpma-dark"
+              >
+                <Image
+                  src="/tpma-logo-inverse.png"
+                  alt="Toronto Product Management Association"
+                  width={887}
+                  height={434}
+                  priority
+                  className="w-24 md:w-28 h-auto"
+                />
+              </a>
             </div>
-            <a
-              href="https://www.tpma.ca"
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="Toronto Product Management Association"
-              className="shrink-0 mt-1 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tpma-gold focus-visible:ring-offset-2 focus-visible:ring-offset-tpma-dark"
-            >
-              <Image
-                src="/tpma-logo-inverse.png"
-                alt="Toronto Product Management Association"
-                width={887}
-                height={434}
-                priority
-                className="w-24 md:w-28 h-auto"
-              />
-            </a>
           </div>
         </div>
       </header>
@@ -258,7 +282,7 @@ export default function SchedulePageClient() {
           ${hasScrolledPastFilters ? 'shadow-[0_12px_24px_-20px_rgba(15,23,42,0.45)]' : 'shadow-none'}
         `}
       >
-        <div className="max-w-3xl mx-auto px-4">
+        <div className="max-w-3xl xl:max-w-7xl mx-auto px-4">
           <RoomFilter activeRoom={activeRoom} onRoomChange={setActiveRoom} />
           <div className="flex items-center justify-between gap-3 pb-3 -mt-1">
             <p className="min-w-0 text-2xs font-medium leading-tight text-tpma-dark/80">
@@ -301,7 +325,7 @@ export default function SchedulePageClient() {
       </div>
 
       {/* Schedule */}
-      <div className="max-w-3xl mx-auto px-4 py-4 pb-20">
+      <div className="max-w-3xl xl:max-w-7xl mx-auto px-4 py-4 pb-20">
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <div className="w-6 h-6 border-2 border-tpma-blue border-t-transparent rounded-full animate-spin" />

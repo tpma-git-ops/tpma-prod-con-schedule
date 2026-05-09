@@ -106,6 +106,25 @@
     @apply hidden md:flex md:justify-end md:pt-3;
   }
 
+  .schedule-session-grid {
+    @apply grid grid-cols-1 gap-2;
+  }
+
+  .schedule-session-grid-multi,
+  .schedule-session-grid-all {
+    @apply md:grid-cols-2;
+  }
+
+  @screen xl {
+    .schedule-session-grid-all {
+      @apply grid-cols-5;
+    }
+
+    .schedule-session-grid-all > .schedule-room-grid-item {
+      grid-column: var(--schedule-room-column);
+    }
+  }
+
   .schedule-meta {
     @apply text-2xs font-medium leading-tight text-tpma-dark/65;
   }

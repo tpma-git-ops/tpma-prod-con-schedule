@@ -1,7 +1,7 @@
 'use client'
 
-import type { ReactNode } from 'react'
-import { ROOM_TAB_UNCONFERENCE, type Session, type TimeBlock, type Room } from '@/lib/types'
+import type { CSSProperties, ReactNode } from 'react'
+import { ROOMS, ROOM_TAB_UNCONFERENCE, type Session, type TimeBlock, type Room } from '@/lib/types'
 import { isSessionSaveable } from '@/lib/savedSessions'
 import { formatTime, getDurationMinutes } from '@/lib/utils'
 import { linkifyText } from '@/lib/linkifyText'
@@ -109,34 +109,60 @@ function TimeBlockRow({
       showDuration
     >
       <div className="min-w-0">
-        <div className={`
-          grid gap-2
-          ${(activeRoom === 'All' || activeRoom === ROOM_TAB_UNCONFERENCE) &&
-          roomSessions.length > 1
-            ? 'grid-cols-1 md:grid-cols-2'
-            : 'grid-cols-1'
-          }
-        `}>
+        <div className={getSessionGridClassName(activeRoom, roomSessions.length)}>
           {roomSessions.map((session) => (
-            <SessionCard
+            <div
               key={session.id}
-              session={session}
-              compact={
-                (activeRoom === 'All' || activeRoom === ROOM_TAB_UNCONFERENCE) &&
-                roomSessions.length > 1
-              }
-              showRoom={
-                activeRoom === 'All' || activeRoom === ROOM_TAB_UNCONFERENCE
-              }
-              canSave={isSessionSaveable(session)}
-              isSaved={savedSessionIdSet.has(session.id)}
-              onToggleSavedSession={onToggleSavedSession}
-            />
+              className="schedule-room-grid-item min-w-0"
+              style={getRoomGridItemStyle(activeRoom, session)}
+            >
+              <SessionCard
+                session={session}
+                compact={
+                  (activeRoom === 'All' || activeRoom === ROOM_TAB_UNCONFERENCE) &&
+                  roomSessions.length > 1
+                }
+                showRoom={
+                  activeRoom === 'All' || activeRoom === ROOM_TAB_UNCONFERENCE
+                }
+                canSave={isSessionSaveable(session)}
+                isSaved={savedSessionIdSet.has(session.id)}
+                onToggleSavedSession={onToggleSavedSession}
+              />
+            </div>
           ))}
         </div>
       </div>
     </TimelineBlockShell>
   )
+}
+
+function getSessionGridClassName(activeRoom: Room | 'All', roomSessionCount: number) {
+  const classNames = ['schedule-session-grid']
+
+  if (roomSessionCount > 1 && activeRoom === 'All') {
+    classNames.push('schedule-session-grid-all')
+  } else if (roomSessionCount > 1 && activeRoom === ROOM_TAB_UNCONFERENCE) {
+    classNames.push('schedule-session-grid-multi')
+  }
+
+  return classNames.join(' ')
+}
+
+function getRoomGridItemStyle(activeRoom: Room | 'All', session: Session) {
+  if (activeRoom !== 'All') {
+    return undefined
+  }
+
+  const roomIndex = ROOMS.indexOf(session.room as Room)
+
+  if (roomIndex === -1) {
+    return undefined
+  }
+
+  return {
+    '--schedule-room-column': roomIndex + 1,
+  } as CSSProperties
 }
 
 function TimelineBlockShell({
