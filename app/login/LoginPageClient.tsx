@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 
 function LoginForm() {
@@ -8,6 +8,7 @@ function LoginForm() {
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const loginRequestInFlight = useRef(false)
   const searchParams = useSearchParams()
 
   useEffect(() => {
@@ -17,6 +18,10 @@ function LoginForm() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (loginRequestInFlight.current) return
+
+    loginRequestInFlight.current = true
     setLoading(true)
     setError('')
 
@@ -39,6 +44,7 @@ function LoginForm() {
     } catch {
       setError('Unable to send login link.')
     } finally {
+      loginRequestInFlight.current = false
       setLoading(false)
     }
   }

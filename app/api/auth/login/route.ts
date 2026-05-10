@@ -38,6 +38,15 @@ function getAuthCallbackOrigin(request: Request) {
   return requestUrl.origin
 }
 
+function getErrorStatus(error: unknown) {
+  if (typeof error === 'object' && error !== null && 'status' in error) {
+    const status = (error as { status?: unknown }).status
+    if (typeof status === 'number') return status
+  }
+
+  return undefined
+}
+
 export async function POST(request: Request) {
   let email: unknown
 
@@ -86,6 +95,14 @@ export async function POST(request: Request) {
 
   if (error) {
     console.error('Magic-link send failed:', error)
+
+    if (getErrorStatus(error) === 429) {
+      return NextResponse.json(
+        { error: 'Too many login links requested. Wait a few minutes and try again.' },
+        { status: 429 }
+      )
+    }
+
     return NextResponse.json({ error: 'Unable to send login link.' }, { status: 500 })
   }
 
