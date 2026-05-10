@@ -3,11 +3,15 @@
 import { Suspense, useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 
+const MAGIC_LINK_COOLDOWN_MS = 60_000
+const MAGIC_LINK_COOLDOWN_KEY = 'tpcMagicLinkRequestedAt'
+
 function LoginForm() {
   const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [cooldownRemaining, setCooldownRemaining] = useState(0)
   const loginRequestInFlight = useRef(false)
   const searchParams = useSearchParams()
 
@@ -16,10 +20,27 @@ function LoginForm() {
     if (err) setError(decodeURIComponent(err))
   }, [searchParams])
 
+  useEffect(() => {
+    const updateCooldown = () => {
+      const requestedAt = Number(window.localStorage.getItem(MAGIC_LINK_COOLDOWN_KEY))
+      const remaining = requestedAt + MAGIC_LINK_COOLDOWN_MS - Date.now()
+      setCooldownRemaining(Math.max(0, Math.ceil(remaining / 1000)))
+    }
+
+    updateCooldown()
+    const intervalId = window.setInterval(updateCooldown, 1000)
+    return () => window.clearInterval(intervalId)
+  }, [])
+
+  const startCooldown = () => {
+    window.localStorage.setItem(MAGIC_LINK_COOLDOWN_KEY, Date.now().toString())
+    setCooldownRemaining(Math.ceil(MAGIC_LINK_COOLDOWN_MS / 1000))
+  }
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (loginRequestInFlight.current) return
+    if (loginRequestInFlight.current || cooldownRemaining > 0) return
 
     loginRequestInFlight.current = true
     setLoading(true)
@@ -36,10 +57,12 @@ function LoginForm() {
 
       if (!response.ok) {
         const body = await response.json().catch(() => null)
+        if (response.status === 429) startCooldown()
         setError(body?.error || 'Unable to send login link.')
         return
       }
 
+      startCooldown()
       setSent(true)
     } catch {
       setError('Unable to send login link.')
@@ -93,11 +116,15 @@ function LoginForm() {
 
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || cooldownRemaining > 0}
               className="w-full py-2 px-4 bg-tpma-dark text-white text-sm font-medium rounded-lg
                 hover:bg-tpma-dark/90 transition-colors disabled:opacity-50"
             >
-              {loading ? 'Sending...' : 'Send Magic Link'}
+              {loading
+                ? 'Sending...'
+                : cooldownRemaining > 0
+                  ? `Try again in ${cooldownRemaining}s`
+                  : 'Send Magic Link'}
             </button>
           </form>
         )}

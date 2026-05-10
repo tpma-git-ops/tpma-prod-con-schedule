@@ -62,6 +62,8 @@ For a Vercel deployment, set the same public URL in both places:
 
 If magic-link login returns a generic “Unable to send login link” error, check Vercel function logs for the specific Supabase error. Common causes are missing Supabase env vars, not running `supabase/schema.sql` so `is_admin_email` does not exist, or a production callback URL that is not allowlisted in Supabase.
 
+Supabase rate-limits magic-link requests. Before event day, have admins sign in on the devices they will use, keep those browser sessions active, and raise the project OTP rate limit in **Supabase → Authentication → Rate Limits** if several admins may need fresh links in the same hour.
+
 ### npm scripts
 
 | Command | Purpose |
