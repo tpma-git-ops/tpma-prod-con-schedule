@@ -411,7 +411,9 @@ export function SessionCard({
           )}
 
           {session.description && (
-            <p className={`schedule-supporting ${speakers.length > 0 ? 'mt-3' : ''}`}>
+            <p
+              className={`schedule-supporting whitespace-pre-line ${speakers.length > 0 ? 'mt-3' : ''}`}
+            >
               {linkifyText(session.description)}
             </p>
           )}

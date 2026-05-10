@@ -84,7 +84,9 @@ function TimeBlockRow({
             {session.title}
           </span>
           {session.description && !isBreak && (
-            <p className={`mt-1 ${isAfterparty ? 'schedule-supporting-inverse' : 'schedule-supporting'}`}>
+            <p
+              className={`mt-1 whitespace-pre-line ${isAfterparty ? 'schedule-supporting-inverse' : 'schedule-supporting'}`}
+            >
               {linkifyText(session.description)}
             </p>
           )}

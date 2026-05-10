@@ -158,15 +158,21 @@ insert into public.sessions (id, title, description, room, start_time, end_time,
    'Auditorium', '13:55', '14:25', 'sponsor', 'published', false, 300),
 
   ('b0000001-0000-0000-0000-000000000027', 'Unconference Session',
-   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics in the morning, vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
+   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics before the conference (forms are shared with every attendee ticket).
+
+At the conference, attendees will vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
    'Room 2', '13:55', '14:25', 'unconference', 'published', false, 301),
 
   ('b0000001-0000-0000-0000-000000000028', 'Unconference Session',
-   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics in the morning, vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
+   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics before the conference (forms are shared with every attendee ticket).
+
+At the conference, attendees will vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
    'Room 3', '13:55', '14:25', 'unconference', 'published', false, 302),
 
   ('b0000001-0000-0000-0000-000000000029', 'Unconference Session',
-   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics in the morning, vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
+   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics before the conference (forms are shared with every attendee ticket).
+
+At the conference, attendees will vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
    'Room 4', '13:55', '14:25', 'unconference', 'published', false, 303),
 
   ('b0000001-0000-0000-0000-000000000030', 'Unconference Table Rounds',
@@ -181,15 +187,21 @@ insert into public.sessions (id, title, description, room, start_time, end_time,
    'Auditorium', '14:35', '15:05', 'talk', 'published', false, 350),
 
   ('b0000001-0000-0000-0000-000000000032', 'Unconference Session',
-   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics in the morning, vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
+   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics before the conference (forms are shared with every attendee ticket).
+
+At the conference, attendees will vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
    'Room 2', '14:35', '15:05', 'unconference', 'published', false, 351),
 
   ('b0000001-0000-0000-0000-000000000033', 'Unconference Session',
-   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics in the morning, vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
+   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics before the conference (forms are shared with every attendee ticket).
+
+At the conference, attendees will vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
    'Room 3', '14:35', '15:05', 'unconference', 'published', false, 352),
 
   ('b0000001-0000-0000-0000-000000000034', 'Unconference Session',
-   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics in the morning, vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
+   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics before the conference (forms are shared with every attendee ticket).
+
+At the conference, attendees will vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
    'Room 4', '14:35', '15:05', 'unconference', 'published', false, 353),
 
   ('b0000001-0000-0000-0000-000000000035', 'Unconference Table Rounds',
@@ -204,15 +216,21 @@ insert into public.sessions (id, title, description, room, start_time, end_time,
    'Auditorium', '15:35', '16:05', 'talk', 'published', false, 450),
 
   ('b0000001-0000-0000-0000-000000000037', 'Unconference Session',
-   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics in the morning, vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
+   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics before the conference (forms are shared with every attendee ticket).
+
+At the conference, attendees will vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
    'Room 2', '15:35', '16:05', 'unconference', 'published', false, 451),
 
   ('b0000001-0000-0000-0000-000000000038', 'Unconference Session',
-   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics in the morning, vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
+   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics before the conference (forms are shared with every attendee ticket).
+
+At the conference, attendees will vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
    'Room 3', '15:35', '16:05', 'unconference', 'published', false, 452),
 
   ('b0000001-0000-0000-0000-000000000039', 'Unconference Session',
-   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics in the morning, vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
+   'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics before the conference (forms are shared with every attendee ticket).
+
+At the conference, attendees will vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
    'Room 4', '15:35', '16:05', 'unconference', 'published', false, 453),
 
   ('b0000001-0000-0000-0000-000000000040', 'Unconference Table Rounds',

@@ -172,7 +172,7 @@ WHERE id = 'b0000001-0000-0000-0000-000000000041';
 -- -----------------------------------------------------------------------
 UPDATE public.sessions
 SET
-  description = 'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics in the morning, vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
+  description = E'The unconference is where the agenda is set by the people in the room. Attendees pitch session topics before the conference (forms are shared with every attendee ticket).\n\nAt the conference, attendees will vote on what they want to dig into, and the highest-voted ideas become real sessions later in the day. Expect peer-led discussions on the challenges, questions, and ideas that product people are actually wrestling with right now. [Learn more here](https://www.tpma.ca/post/the-unconference-everything-you-need-to-know).',
   updated_at  = now()
 WHERE title = 'Unconference Session'
   AND session_type = 'unconference';
