@@ -4,9 +4,16 @@ import { NextResponse } from 'next/server'
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 function createAuthClient() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    throw new Error('Missing Supabase URL or anon key environment variable.')
+  }
+
   return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    supabaseUrl,
+    supabaseAnonKey,
     {
       auth: {
         persistSession: false,
@@ -14,6 +21,21 @@ function createAuthClient() {
       },
     }
   )
+}
+
+function getAuthCallbackOrigin(request: Request) {
+  const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '')
+  if (configuredSiteUrl) return configuredSiteUrl
+
+  const requestUrl = new URL(request.url)
+  const forwardedHost = request.headers.get('x-forwarded-host')?.split(',')[0]?.trim()
+  const forwardedProto =
+    request.headers.get('x-forwarded-proto')?.split(',')[0]?.trim() ||
+    requestUrl.protocol.replace(/:$/, '')
+
+  if (forwardedHost) return `${forwardedProto}://${forwardedHost}`
+
+  return requestUrl.origin
 }
 
 export async function POST(request: Request) {
@@ -31,7 +53,15 @@ export async function POST(request: Request) {
   }
 
   const normalizedEmail = email.trim().toLowerCase()
-  const supabase = createAuthClient()
+  let supabase: ReturnType<typeof createAuthClient>
+
+  try {
+    supabase = createAuthClient()
+  } catch (error) {
+    console.error('Supabase auth client configuration failed:', error)
+    return NextResponse.json({ error: 'Unable to send login link.' }, { status: 500 })
+  }
+
   const { data: isAdmin, error: lookupError } = await supabase.rpc('is_admin_email', {
     candidate_email: normalizedEmail,
   })
@@ -46,7 +76,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true })
   }
 
-  const origin = new URL(request.url).origin
+  const origin = getAuthCallbackOrigin(request)
   const { error } = await supabase.auth.signInWithOtp({
     email: normalizedEmail,
     options: {

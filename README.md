@@ -51,7 +51,16 @@ Open [http://localhost:3000](http://localhost:3000). Do not commit `.env.local` 
 
 ### Fonts (optional)
 
-TPMA marketing uses **Cirka** for headings. With a valid licence, place `Cirka-Light.ttf`, `Cirka-Regular.ttf`, and `Cirka-Bold.ttf` under `public/fonts/` — see `globals.css` (`@font-face`). Without those files the UI uses a Georgia fallback. Prefer `.woff2` in production if you convert assets and update `url()` / `format()` accordingly.
+TPMA marketing uses **Cirka** for headings. Licensed font files are intentionally gitignored, so the committed app uses a local Cirka install when one exists and otherwise falls back to Georgia. If the project later has permission to ship web fonts, add the files and update `globals.css` with the matching `@font-face` declarations.
+
+### Production auth configuration
+
+For a Vercel deployment, set the same public URL in both places:
+
+1. **Vercel → Environment Variables:** set `NEXT_PUBLIC_SITE_URL` to the production origin, for example `https://toronto-product-conference-schedule.vercel.app`.
+2. **Supabase → Authentication → URL configuration:** add that exact callback URL, for example `https://toronto-product-conference-schedule.vercel.app/api/auth/callback`.
+
+If magic-link login returns a generic “Unable to send login link” error, check Vercel function logs for the specific Supabase error. Common causes are missing Supabase env vars, not running `supabase/schema.sql` so `is_admin_email` does not exist, or a production callback URL that is not allowlisted in Supabase.
 
 ### npm scripts
 
