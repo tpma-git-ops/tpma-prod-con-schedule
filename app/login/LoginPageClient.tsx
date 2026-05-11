@@ -1,7 +1,8 @@
 'use client'
 
 import { Suspense, useEffect, useRef, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { createClient } from '@/lib/supabase-browser'
 
 const MAGIC_LINK_COOLDOWN_MS = 60_000
 const MAGIC_LINK_COOLDOWN_KEY = 'tpcMagicLinkRequestedAt'
@@ -13,12 +14,59 @@ function LoginForm() {
   const [error, setError] = useState('')
   const [cooldownRemaining, setCooldownRemaining] = useState(0)
   const loginRequestInFlight = useRef(false)
+  const router = useRouter()
   const searchParams = useSearchParams()
 
   useEffect(() => {
     const err = searchParams.get('error')
     if (err) setError(decodeURIComponent(err))
   }, [searchParams])
+
+  useEffect(() => {
+    const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''))
+    const accessToken = hashParams.get('access_token')
+    const refreshToken = hashParams.get('refresh_token')
+    const authError = hashParams.get('error_description') || hashParams.get('error')
+
+    if (authError) {
+      window.history.replaceState(null, '', '/login')
+      setError(authError)
+      return
+    }
+
+    if (!accessToken || !refreshToken) return
+
+    let cancelled = false
+
+    const finishFragmentLogin = async () => {
+      setLoading(true)
+      setError('')
+
+      const supabase = createClient()
+      const { error: sessionError } = await supabase.auth.setSession({
+        access_token: accessToken,
+        refresh_token: refreshToken,
+      })
+
+      if (cancelled) return
+
+      if (sessionError) {
+        window.history.replaceState(null, '', '/login')
+        setError(sessionError.message)
+        setLoading(false)
+        return
+      }
+
+      window.history.replaceState(null, '', '/login')
+      router.replace('/admin')
+    }
+
+    finishFragmentLogin()
+
+    return () => {
+      cancelled = true
+    }
+  }, [router])
 
   useEffect(() => {
     const updateCooldown = () => {

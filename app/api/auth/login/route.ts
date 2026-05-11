@@ -1,9 +1,11 @@
-import { createClient } from '@supabase/supabase-js'
+import { createServerClient } from '@supabase/ssr'
+import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+type CookieToSet = { name: string; value: string; options?: object }
 
-function createAuthClient() {
+async function createAuthClient() {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
@@ -11,13 +13,21 @@ function createAuthClient() {
     throw new Error('Missing Supabase URL or anon key environment variable.')
   }
 
-  return createClient(
+  const cookieStore = await cookies()
+
+  return createServerClient(
     supabaseUrl,
     supabaseAnonKey,
     {
-      auth: {
-        persistSession: false,
-        autoRefreshToken: false,
+      cookies: {
+        getAll() {
+          return cookieStore.getAll()
+        },
+        setAll(cookiesToSet: CookieToSet[]) {
+          cookiesToSet.forEach(({ name, value, options }) =>
+            cookieStore.set(name, value, options)
+          )
+        },
       },
     }
   )
@@ -62,10 +72,10 @@ export async function POST(request: Request) {
   }
 
   const normalizedEmail = email.trim().toLowerCase()
-  let supabase: ReturnType<typeof createAuthClient>
+  let supabase: Awaited<ReturnType<typeof createAuthClient>>
 
   try {
-    supabase = createAuthClient()
+    supabase = await createAuthClient()
   } catch (error) {
     console.error('Supabase auth client configuration failed:', error)
     return NextResponse.json({ error: 'Unable to send login link.' }, { status: 500 })
