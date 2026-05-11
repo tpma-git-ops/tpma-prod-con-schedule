@@ -44,7 +44,7 @@ export interface TimeBlock {
   is_full_width: boolean
 }
 
-export const ROOMS = ['Auditorium', 'Room 2', 'Room 3', 'Room 4', 'Lunch Room'] as const
+export const ROOMS = ['Yonge Room', 'Bay Room', 'Richmond Room', 'Adelaide Room', 'Lunch Room'] as const
 export type Room = typeof ROOMS[number]
 
 /** Filter pill label “Unconf” — selects unconference sessions across breakout rooms (not Lunch Room venue only). */
@@ -59,28 +59,28 @@ export interface RoomStyle {
 }
 
 export const ROOM_STYLES: Record<Room, RoomStyle> = {
-  'Auditorium': {
+  'Yonge Room': {
     dot: 'bg-tpma-blue',
     cardBar: 'border-l-tpma-blue',
     tint: 'bg-indigo-50',
     border: 'border-indigo-200 border-l-tpma-blue',
     text: 'text-indigo-700',
   },
-  'Room 2': {
+  'Bay Room': {
     dot: 'bg-tpma-coral',
     cardBar: 'border-l-tpma-coral',
     tint: 'bg-red-50',
     border: 'border-red-200 border-l-tpma-coral',
     text: 'text-red-700',
   },
-  'Room 3': {
+  'Richmond Room': {
     dot: 'bg-tpma-gold',
     cardBar: 'border-l-tpma-gold',
     tint: 'bg-amber-50',
     border: 'border-amber-200 border-l-tpma-gold',
     text: 'text-amber-700',
   },
-  'Room 4': {
+  'Adelaide Room': {
     dot: 'bg-emerald-500',
     cardBar: 'border-l-emerald-500',
     tint: 'bg-emerald-50',

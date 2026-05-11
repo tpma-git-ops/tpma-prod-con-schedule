@@ -25,7 +25,7 @@ export function SessionEditor({ session, speakers, onClose, onSave }: SessionEdi
   const [form, setForm] = useState({
     title: session?.title || '',
     description: session?.description || '',
-    room: session?.room || 'Auditorium',
+    room: session?.room || 'Yonge Room',
     start_time: session?.start_time?.slice(0, 5) || '09:00',
     end_time: session?.end_time?.slice(0, 5) || '09:30',
     session_type: (session?.session_type || 'talk') as SessionType,
@@ -51,7 +51,7 @@ export function SessionEditor({ session, speakers, onClose, onSave }: SessionEdi
       ...f,
       session_type: type,
       is_full_width: FULL_WIDTH_TYPES.includes(type),
-      room: FULL_WIDTH_TYPES.includes(type) ? 'all' : f.room === 'all' ? 'Auditorium' : f.room,
+      room: FULL_WIDTH_TYPES.includes(type) ? 'all' : f.room === 'all' ? 'Yonge Room' : f.room,
     }))
   }
 

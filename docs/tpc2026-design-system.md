@@ -123,13 +123,13 @@ Base unit: **4px**
 
 ### Room Color Coding
 
-| Room         | Dot / Left Accent | Surface Tint |
-|--------------|-------------------|--------------|
-| Auditorium   | `--color-blue`    | Indigo 50    |
-| Room 2       | `--color-coral`   | Red 50       |
-| Room 3       | `--color-gold`    | Amber 50     |
-| Room 4       | `#10B981`         | Emerald 50   |
-| Lunch Room   | `--color-dark`    | Slate 50     |
+| Room          | Dot / Left Accent | Surface Tint |
+|---------------|-------------------|--------------|
+| Yonge Room    | `--color-blue`    | Indigo 50    |
+| Bay Room      | `--color-coral`   | Red 50       |
+| Richmond Room | `--color-gold`    | Amber 50     |
+| Adelaide Room | `#10B981`         | Emerald 50   |
+| Lunch Room    | `--color-dark`    | Slate 50     |
 
 - Session type is secondary metadata, not the primary card accent.
 - Keynote uses a filled gold badge in the meta row plus larger title treatment, while still inheriting the room accent.
